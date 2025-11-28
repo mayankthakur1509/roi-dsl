@@ -48,7 +48,7 @@ async function handleVROI(request, env) {
 function calculateVROI(data) {
   
   // Extract inputs
-  const monthlyBurn = parseFloat(data.MonthlyBurn) || 2000000;
+  const monthlyBurn = parseFloat(data.MonthlyBurn) || 2000000.0;
   const delayWeeks = parseFloat(data.ActualDelay) || 0;
   const reworkPercent = parseFloat(data.CRORework) || 0;
   

@@ -1,6 +1,6 @@
 # 🤳 **vROI Resume Authority Site Generator v1.0**
 
-> **Transform any resume into a professional authority site in 30 seconds.**
+ **Transform any resume into a professional authority site in 30 seconds.**
 
 Upload resume → AI analyzes → Live site → Share instantly. Zero human intervention.
 
