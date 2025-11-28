@@ -1,0 +1,101 @@
+{
+  "site_version": "2.1",
+  "persona": {
+    "role": "Owner",
+    "description": "Independent Consultant Test",
+    "target_vertical": "professional_services"
+  },
+  "value_framework": {
+    "pillars": [
+      {
+        "name": "IncreaseRevenue",
+        "value": "Increase annual consulting revenue Test"
+      },
+      {
+        "name": "SaveTime",
+        "value": "Reduce client onboarding time"
+      }
+    ],
+    "metrics": {
+      "RevenueImpact": 50000.0,
+      "TimeSavedWeeks": 4.0,
+      "CurrentClients": 8.0,
+      "AvgProjectValue": 12000.0
+    },
+    "computed_metrics": {
+      "EstimatedAnnualGain": "RevenueImpact * 1",
+      "EfficiencyScore": "(TimeSavedWeeks / 52) * 100"
+    }
+  },
+  "automation": {
+    "triggers": [
+      {
+        "condition": "TimeSavedWeeks > 2",
+        "action": "notify(\"offer_fasttrack\")",
+        "type": "threshold_alert"
+      },
+      {
+        "condition": "RevenueImpact > 10000",
+        "action": "escalate(\"priority_outreach\")",
+        "type": "threshold_alert"
+      }
+    ]
+  },
+  "page_variants": {
+    "hero": "Turn Your Expertise Into Predictable Revenue",
+    "resume": null,
+    "cta": "Get Your vROI Now"
+  },
+  "hero_section": {
+    "headline": "Turn Your Expertise Into Predictable Revenue",
+    "subheadline": "Increase annual consulting revenue Test",
+    "background_theme": "professional",
+    "cta_primary": "Get Your vROI Now"
+  },
+  "value_props": [
+    {
+      "title": "IncreaseRevenue",
+      "description": "Increase annual consulting revenue Test",
+      "icon": "check-circle",
+      "quantified": false
+    },
+    {
+      "title": "SaveTime",
+      "description": "Reduce client onboarding time",
+      "icon": "clock",
+      "quantified": false
+    }
+  ],
+  "case_studies": [
+    {
+      "case_id": "case_1",
+      "industry": "professional_services",
+      "challenge": "Increase annual consulting revenue Test",
+      "result": "Achieved IncreaseRevenue",
+      "testimonial_placeholder": true
+    },
+    {
+      "case_id": "case_2",
+      "industry": "professional_services",
+      "challenge": "Reduce client onboarding time",
+      "result": "Achieved SaveTime",
+      "testimonial_placeholder": true
+    }
+  ],
+  "cta": {
+    "primary_text": "Get Your vROI Now",
+    "secondary_text": "Learn More",
+    "urgency_message": "High RevenueImpact detected - Take action now",
+    "button_style": "prominent"
+  },
+  "seo": {
+    "title": "Independent Consultant Test - Increase annual consulting revenue Test",
+    "meta_description": "Help Independent Consultant Test achieve Increase annual consulting revenue Test. Proven framework with measurable results.",
+    "keywords": [
+      "Independent Consultant Test",
+      "IncreaseRevenue",
+      "SaveTime"
+    ],
+    "og_type": "website"
+  }
+}

@@ -1,0 +1,25 @@
+# Example ROI-DSL File: Clinical Trial Sponsor
+# This demonstrates a complete ROI-DSL configuration for MintSite generation
+
+PERSONA Sponsor: "CNS Phase III Director"
+
+GOAL DelayCost: "Avoid $2M/mo burn"
+GOAL Submission: "Restore CRO control"
+GOAL TimelineRecovery: "Get back on track for FDA submission"
+
+METRIC VendorDrift: 0.45
+METRIC TimelineRisk: 0.67
+METRIC ComplianceGap: 0.38
+
+RMetric StudyHealth: "TimelineRisk * 1.2 + VendorDrift"
+RMetric OverallRisk: "(VendorDrift + TimelineRisk + ComplianceGap) / 3"
+
+WHEN VendorDrift > 0.40 THEN escalate("vendor")
+WHEN TimelineRisk > 0.50 THEN alert("timeline")
+WHEN ComplianceGap > 0.35 THEN notify("compliance_team")
+
+VARIANT Hero: "CRO Sponsor"
+VARIANT Resume: "Ops Director"
+VARIANT CTA: "Risk Scan"
+
+OUTPUT MintSite

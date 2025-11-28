@@ -1,0 +1,656 @@
+{
+  "campaign_version": "2.1",
+  "campaign_type": "value_first_outbound",
+  "target_persona": {
+    "primary_role": "Sponsor",
+    "description": "VP/EVP Clinical Operations",
+    "pain_points": [
+      "Avoid submission delays and regulatory exposure",
+      "Recover 2-8 weeks on delayed trials",
+      "Restore CRO accountability and performance",
+      "Prevent $2M+/month burn from operational drift",
+      "Reduce protocol deviations 35%",
+      "Avoid $2.4M+ in CRO rework costs"
+    ],
+    "value_props": [
+      "Avoid submission delays and regulatory exposure",
+      "Recover 2-8 weeks on delayed trials",
+      "Restore CRO accountability and performance"
+    ],
+    "firmographic_filters": {
+      "company_size": "smb",
+      "industries": [
+        "pharmaceutical"
+      ],
+      "technologies": [
+        "Salesforce",
+        "HubSpot",
+        "Microsoft Dynamics"
+      ]
+    }
+  },
+  "icp_filters": {
+    "job_titles": [
+      "Sponsor",
+      "VP of Sponsor",
+      "Director of Sponsor",
+      "Head of Sponsor",
+      "Chief Sponsor Officer"
+    ],
+    "seniority_levels": [
+      "Director",
+      "VP",
+      "C-Level"
+    ],
+    "departments": [
+      "Clinical Operations",
+      "R&D",
+      "Regulatory"
+    ],
+    "company_size": {
+      "min_employees": 50,
+      "max_employees": 10000
+    },
+    "exclude_keywords": [
+      "student",
+      "intern",
+      "retired"
+    ],
+    "intent_signals": [
+      "searching for SubmissionRisk",
+      "visiting competitor websites",
+      "downloading industry reports",
+      "attending relevant webinars"
+    ]
+  },
+  "sequences": {
+    "email": [
+      {
+        "day": 0,
+        "type": "cold_outreach",
+        "subject": "{first_name}, are you seeing VendorDrift?",
+        "body_template": "Hi {{first_name}},\n\nI noticed {{company}} is in the {{industry}} space. Based on what I've seen with similar companies, many are facing Avoid submission delays and regulatory exposure.\n\nQuick question: Are you currently tracking VendorDrift?\n\nMost {{title}}s I work with are surprised to learn their VendorDrift is typically 45% higher than they think.\n\nWorth a 15-minute conversation?\n\nBest,\n{{sender_name}}",
+        "personalization_tokens": [
+          "first_name",
+          "company",
+          "industry",
+          "title",
+          "sender_name"
+        ],
+        "ai_personalization": true,
+        "send_window": "9am-11am local time"
+      },
+      {
+        "day": 2,
+        "type": "value_follow_up",
+        "subject": "When Your Trial Cannot Fail - {company}",
+        "body_template": "{{first_name}},\n\nFollowing up on my previous email about Avoid submission delays and regulatory exposure.\n\nHere's what we typically help {{title}}s achieve:\n\n\u2022 Avoid submission delays and regulatory exposure\n\u2022 Recover 2-8 weeks on delayed trials\n\u2022 Restore CRO accountability and performance\n\u2022 Prevent $2M+/month burn from operational drift\n\u2022 Reduce protocol deviations 35%\n\u2022 Avoid $2.4M+ in CRO rework costs\n\nOne client ({{case_study_company}}) saw $2.4M in just 2 months.\n\nWant to see how this applies to {{company}}?\n\nCalendar link: {{calendar_link}}\n\nBest,\n{{sender_name}}",
+        "personalization_tokens": [
+          "first_name",
+          "company",
+          "title",
+          "case_study_company",
+          "calendar_link",
+          "sender_name"
+        ],
+        "ai_personalization": true,
+        "send_window": "9am-11am local time",
+        "conditions": {
+          "send_if": "no_reply_to_email_1"
+        }
+      },
+      {
+        "day": 5,
+        "type": "case_study",
+        "subject": "How {{case_study_company}} prevented {{result}}",
+        "body_template": "{{first_name}},\n\nWanted to share a quick case study that might resonate.\n\n**Asubio**: COPD Phase IIb \u2013 40 Sites. Recovered 2 months. Vendor alignment restored. $2.4M rework prevented.\n\nThe situation sounds similar to what {{company}} might be facing.\n\nHappy to walk you through the details if you're interested.\n\nBest time for a quick call?\n\n{{sender_name}}",
+        "personalization_tokens": [
+          "first_name",
+          "company",
+          "case_study_company",
+          "result",
+          "sender_name"
+        ],
+        "ai_personalization": true,
+        "send_window": "9am-11am local time",
+        "conditions": {
+          "send_if": "no_reply_to_email_2"
+        }
+      },
+      {
+        "day": 8,
+        "type": "risk_urgency",
+        "subject": "{{first_name}}, the cost of waiting",
+        "body_template": "{{first_name}},\n\nQuick note on timing.\n\nBased on industry data, when VendorDrift reaches 45%, companies typically see {{negative_outcome}} within 60-90 days.\n\nNot trying to create urgency artificially - just sharing what we've observed.\n\nIf you're already above 45%, worth having a conversation sooner rather than later.\n\nCalendar: {{calendar_link}}\n\n{{sender_name}}",
+        "personalization_tokens": [
+          "first_name",
+          "company",
+          "cost",
+          "sender_name"
+        ],
+        "ai_personalization": true,
+        "send_window": "9am-11am local time",
+        "conditions": {
+          "send_if": "no_reply_to_email_3"
+        }
+      },
+      {
+        "day": 12,
+        "type": "breakup",
+        "subject": "Closing the loop - {{company}}",
+        "body_template": "{{first_name}},\n\nI've reached out a few times about helping {{company}} with {primary_goal}.\n\nI'm assuming this isn't a priority right now, so I'll close the loop on my end.\n\nIf anything changes in the next few months and you want to revisit, just reply to this email.\n\nAll the best,\n{{sender_name}}\n\nP.S. - If you're seeing {metric_name} above {threshold}%, we should definitely talk. That's when most companies see serious issues.",
+        "personalization_tokens": [
+          "first_name",
+          "company",
+          "primary_goal",
+          "metric_name",
+          "threshold",
+          "sender_name"
+        ],
+        "ai_personalization": true,
+        "send_window": "9am-11am local time",
+        "conditions": {
+          "send_if": "no_reply_to_email_4"
+        }
+      },
+      {
+        "day": 30,
+        "type": "re_engagement",
+        "subject": "New data on {{metric_name}} - {{industry}}",
+        "body_template": "{{first_name}},\n\nWe haven't connected in a month, but wanted to share some new data we just published on {{metric_name}} in the {{industry}} space.\n\nKey finding: Companies that address this early see {{benefit}}.\n\nThought it might be relevant to {{company}}.\n\nLink: {{content_link}}\n\nLet me know if you want to discuss.\n\n{{sender_name}}",
+        "personalization_tokens": [
+          "first_name",
+          "company",
+          "metric_name",
+          "industry",
+          "sender_name"
+        ],
+        "ai_personalization": true,
+        "send_window": "9am-11am local time",
+        "conditions": {
+          "send_if": "no_reply_to_sequence"
+        }
+      }
+    ],
+    "linkedin": [
+      {
+        "day": 0,
+        "type": "connection_request",
+        "message_template": "Hi {{first_name}},\n\nI help {{title}}s in {{industry}} with Avoid submission delays and regulatory exposure. \n\nWould love to connect and share some insights relevant to {{company}}.\n\nBest,\n{{sender_name}}",
+        "personalization_tokens": [
+          "first_name",
+          "title",
+          "industry",
+          "company",
+          "sender_name"
+        ],
+        "note_character_limit": 300
+      },
+      {
+        "day": 3,
+        "type": "value_message",
+        "condition": "connection_accepted",
+        "message_template": "Thanks for connecting, {{first_name}}!\n\nI noticed {{company}} is growing rapidly. \n\nWe've helped similar companies achieve:\n\u2022 Avoid submission delays and regulatory exposure\n\u2022 Recover 2-8 weeks on delayed trials\n\u2022 Restore CRO accountability and performance\n\nWorth a quick chat to see if there's a fit?\n\nMy calendar: {{calendar_link}}",
+        "personalization_tokens": [
+          "first_name",
+          "company",
+          "calendar_link"
+        ],
+        "ai_personalization": true
+      },
+      {
+        "day": 7,
+        "type": "content_share",
+        "condition": "no_reply_to_message",
+        "message_template": "Thought you might find this relevant - just published a case study on how {{case_study_company}} {case_study_result}.\n\n{{content_link}}\n\nLet me know what you think!",
+        "personalization_tokens": [
+          "case_study_company",
+          "case_study_result",
+          "content_link"
+        ],
+        "ai_personalization": true
+      },
+      {
+        "day": 1,
+        "type": "profile_engagement",
+        "actions": [
+          "view_profile",
+          "like_recent_post",
+          "comment_on_post"
+        ],
+        "comment_template": "Great point about {{post_topic}}. We've seen similar patterns with {{industry}} companies.",
+        "ai_personalization": true
+      }
+    ],
+    "sms": [
+      {
+        "day": 0,
+        "type": "intro_sms",
+        "message_template": "Hi {{first_name}}, Avoid submission delays and regulatory exposure. Are you the right person to discuss this? Reply YES or NO.",
+        "character_limit": 160,
+        "send_window": "10am-4pm local time",
+        "require_opt_in": true
+      },
+      {
+        "day": 1,
+        "type": "value_sms",
+        "condition": "replied_yes",
+        "message_template": "Great! We help companies prevent {risk}. Can I send you a quick 60-sec ROI calculator? Reply CALC for link.",
+        "character_limit": 160,
+        "send_window": "10am-4pm local time"
+      },
+      {
+        "day": 2,
+        "type": "calendar_sms",
+        "condition": "engaged",
+        "message_template": "Based on your input, I see {{estimated_value}}. Worth a 15-min call? {{calendar_link}}",
+        "character_limit": 160,
+        "send_window": "10am-4pm local time"
+      }
+    ],
+    "phone": [
+      {
+        "attempt": 1,
+        "day": 3,
+        "type": "discovery_call",
+        "call_script": {
+          "opener": "Hi {{first_name}}, this is {{caller_name}} from {{company}}. I sent you an email about Avoid submission delays and regulatory exposure. Do you have 2 minutes?",
+          "pitch": "We help {{title}}s prevent operational issues. Quick question: are you currently tracking VendorDrift?",
+          "qualifying_questions": [
+            "How would you rate your current VendorDrift?",
+            "How would you rate your current TimelineDelay?",
+            "How would you rate your current DeviationRate?"
+          ],
+          "objection_handlers": {
+            "no_time": "I understand. Can I send you a 60-second ROI calculator instead? Takes less time than this call.",
+            "not_interested": "No problem. Just out of curiosity, what's your current approach to {primary_goal}?",
+            "send_info": "Happy to. But quick question first - if you could solve {primary_goal} in the next 30 days, would that be valuable?"
+          },
+          "close": "Based on what you shared, I think there's a fit. Can we schedule 15 minutes next week to dive deeper?"
+        },
+        "voicemail_script": "Hi {{first_name}}, {{caller_name}} here. Quick question about Avoid submission delays and regulatory exposure. I'll send details via email. My direct line is {{phone}}.",
+        "call_window": "10am-4pm local time",
+        "max_attempts": 3
+      }
+    ],
+    "ai_chat": [
+      {
+        "trigger": "website_visit",
+        "type": "proactive_chat",
+        "delay_seconds": 15,
+        "message": "Hi! I noticed you're looking at Avoid submission delays and regulatory exposure. I'm an AI assistant - can I answer any questions?",
+        "conversation_flow": [
+          {
+            "step": 1,
+            "type": "greeting",
+            "message": "Hi! What brings you here today?"
+          },
+          {
+            "step": 2,
+            "type": "qualification",
+            "message": "I help companies with Avoid submission delays and regulatory exposure. Is this relevant to you?"
+          },
+          {
+            "step": 3,
+            "type": "discovery",
+            "questions": [
+              "How would you describe your VendorDrift?",
+              "How would you describe your TimelineDelay?",
+              "How would you describe your DeviationRate?"
+            ]
+          },
+          {
+            "step": 4,
+            "type": "recommendation",
+            "message": "Based on what you shared, I think we can help. Want to schedule a call?"
+          }
+        ]
+      },
+      {
+        "trigger": "form_abandonment",
+        "type": "recovery_chat",
+        "delay_seconds": 5,
+        "message": "Before you go - quick question: what's your biggest challenge with {pain_point}?",
+        "conversation_flow": [
+          {
+            "step": 1,
+            "type": "greeting",
+            "message": "Hi! What brings you here today?"
+          },
+          {
+            "step": 2,
+            "type": "qualification",
+            "message": "I help companies with Avoid submission delays and regulatory exposure. Is this relevant to you?"
+          },
+          {
+            "step": 3,
+            "type": "discovery",
+            "questions": [
+              "How would you describe your VendorDrift?",
+              "How would you describe your TimelineDelay?",
+              "How would you describe your DeviationRate?"
+            ]
+          },
+          {
+            "step": 4,
+            "type": "recommendation",
+            "message": "Based on what you shared, I think we can help. Want to schedule a call?"
+          }
+        ]
+      }
+    ]
+  },
+  "ai_sdr": {
+    "agent_name": "ROI Discovery Agent",
+    "personality": {
+      "tone": "professional_consultative",
+      "empathy_level": "high",
+      "persistence_level": "medium"
+    },
+    "capabilities": {
+      "email_generation": true,
+      "linkedin_generation": true,
+      "lead_research": true,
+      "objection_handling": true,
+      "meeting_booking": true
+    },
+    "personalization_engine": {
+      "use_ai": true,
+      "data_sources": [
+        "linkedin_profile",
+        "company_website",
+        "recent_news",
+        "glassdoor_reviews",
+        "tech_stack"
+      ],
+      "personalization_depth": "deep"
+    },
+    "qualification_criteria": {
+      "must_have": [
+        "company_size_match",
+        "budget_available",
+        "decision_maker_involved"
+      ],
+      "nice_to_have": [
+        "current_pain_point",
+        "active_project",
+        "competitor_dissatisfaction"
+      ],
+      "disqualifiers": [
+        "no_budget",
+        "no_authority",
+        "no_need",
+        "wrong_company_size"
+      ]
+    },
+    "escalation_rules": {
+      "escalate_to_human_if": [
+        "high_intent_signal",
+        "c_level_engagement",
+        "meeting_requested",
+        "objection_unresolved"
+      ],
+      "slack_notification": true,
+      "sms_notification": true
+    },
+    "learning": {
+      "track_what_works": true,
+      "a_b_test_messages": true,
+      "optimize_send_times": true
+    }
+  },
+  "lead_scoring": {
+    "scoring_model": "weighted_points",
+    "max_score": 100,
+    "qualification_threshold": 60,
+    "factors": {
+      "firmographic": {
+        "company_size_match": 15,
+        "industry_match": 10,
+        "technology_match": 10,
+        "revenue_range_match": 10
+      },
+      "engagement": {
+        "email_open": 2,
+        "email_click": 5,
+        "email_reply": 15,
+        "linkedin_connection": 5,
+        "linkedin_message_reply": 10,
+        "website_visit": 3,
+        "calculator_use": 10,
+        "content_download": 8,
+        "meeting_booked": 25
+      },
+      "intent_signals": {
+        "searched_relevant_keywords": 10,
+        "visited_pricing_page": 15,
+        "multiple_stakeholders_engaged": 20,
+        "competitor_research": 12
+      },
+      "pain_indicators": {
+        "VendorDrift_above_threshold": 9,
+        "TimelineDelay_above_threshold": 13,
+        "DeviationRate_above_threshold": 7,
+        "TMFReadiness_above_threshold": 11,
+        "MonitoringVariance_above_threshold": 10,
+        "SubmissionExposure_above_threshold": 14
+      },
+      "decay": {
+        "enabled": true,
+        "decay_rate": "5_points_per_week_no_activity"
+      }
+    },
+    "lifecycle_stages": {
+      "0-20": "cold",
+      "21-40": "warm",
+      "41-60": "qualified",
+      "61-80": "hot",
+      "81-100": "very_hot"
+    }
+  },
+  "triggers": [
+    {
+      "trigger_name": "sdr_VendorDrift_>_0.40",
+      "condition": "VendorDrift > 0.40",
+      "sdr_actions": [
+        "notify_human_sdr",
+        "send_urgent_email",
+        "attempt_call"
+      ],
+      "priority": "medium",
+      "notification_channels": [
+        "slack",
+        "sms",
+        "email"
+      ]
+    },
+    {
+      "trigger_name": "sdr_TimelineDelay_>_0.60",
+      "condition": "TimelineDelay > 0.60",
+      "sdr_actions": [
+        "send_email",
+        "update_lead_score",
+        "add_to_sequence"
+      ],
+      "priority": "medium",
+      "notification_channels": [
+        "slack",
+        "sms",
+        "email"
+      ]
+    },
+    {
+      "trigger_name": "sdr_DeviationRate_>_0.35",
+      "condition": "DeviationRate > 0.35",
+      "sdr_actions": [
+        "send_email",
+        "slack_notification"
+      ],
+      "priority": "medium",
+      "notification_channels": [
+        "slack",
+        "sms",
+        "email"
+      ]
+    },
+    {
+      "trigger_name": "sdr_TMFReadiness_<_0.60",
+      "condition": "TMFReadiness < 0.60",
+      "sdr_actions": [
+        "notify_human_sdr",
+        "send_urgent_email",
+        "attempt_call"
+      ],
+      "priority": "medium",
+      "notification_channels": [
+        "slack",
+        "sms",
+        "email"
+      ]
+    },
+    {
+      "trigger_name": "sdr_SubmissionExposure_>_0.65",
+      "condition": "SubmissionExposure > 0.65",
+      "sdr_actions": [
+        "send_email",
+        "update_lead_score",
+        "add_to_sequence"
+      ],
+      "priority": "medium",
+      "notification_channels": [
+        "slack",
+        "sms",
+        "email"
+      ]
+    },
+    {
+      "trigger_name": "sdr_MonitoringVariance_>_0.50",
+      "condition": "MonitoringVariance > 0.50",
+      "sdr_actions": [
+        "notify_human_sdr",
+        "send_urgent_email",
+        "attempt_call"
+      ],
+      "priority": "medium",
+      "notification_channels": [
+        "slack",
+        "sms",
+        "email"
+      ]
+    },
+    {
+      "trigger_name": "high_intent_detected",
+      "condition": "lead_score > 70",
+      "sdr_actions": [
+        "send_urgent_email",
+        "notify_human_sdr",
+        "attempt_immediate_call"
+      ],
+      "priority": "immediate"
+    },
+    {
+      "trigger_name": "meeting_no_show",
+      "condition": "booked_meeting_not_attended",
+      "sdr_actions": [
+        "send_followup_email",
+        "offer_reschedule",
+        "send_sms_if_opted_in"
+      ],
+      "priority": "high"
+    },
+    {
+      "trigger_name": "competitor_mention",
+      "condition": "prospect_mentioned_competitor",
+      "sdr_actions": [
+        "send_comparison_content",
+        "schedule_demo",
+        "notify_sales_engineer"
+      ],
+      "priority": "high"
+    }
+  ],
+  "integrations": {
+    "crm": {
+      "platform": "salesforce",
+      "sync_fields": [
+        "lead_source",
+        "campaign_name",
+        "sequence_step",
+        "lead_score",
+        "engagement_level",
+        "last_activity"
+      ],
+      "create_tasks": true,
+      "update_lead_status": true
+    },
+    "email": {
+      "platform": "sendgrid",
+      "track_opens": true,
+      "track_clicks": true,
+      "track_replies": true
+    },
+    "linkedin": {
+      "platform": "phantombuster",
+      "daily_connection_limit": 50,
+      "daily_message_limit": 30,
+      "humanize_timing": true
+    },
+    "enrichment": {
+      "platform": "clearbit",
+      "enrich_on": "lead_creation",
+      "append_technographics": true,
+      "append_intent_data": true
+    },
+    "calendar": {
+      "platform": "calendly",
+      "meeting_types": [
+        "discovery_call",
+        "demo",
+        "assessment"
+      ],
+      "auto_qualify": true
+    },
+    "notification": {
+      "slack_webhook": "{{SLACK_WEBHOOK_URL}}",
+      "sms_provider": "twilio",
+      "email_alerts": true
+    }
+  },
+  "tracking": {
+    "kpis": {
+      "outbound": [
+        "emails_sent",
+        "emails_opened",
+        "emails_clicked",
+        "emails_replied",
+        "linkedin_connections_sent",
+        "linkedin_connections_accepted",
+        "linkedin_messages_sent",
+        "linkedin_messages_replied"
+      ],
+      "conversion": [
+        "leads_qualified",
+        "meetings_booked",
+        "meetings_held",
+        "opportunities_created",
+        "deals_won"
+      ],
+      "velocity": [
+        "response_time",
+        "time_to_qualification",
+        "time_to_meeting",
+        "time_to_opportunity"
+      ]
+    },
+    "attribution": {
+      "model": "first_touch",
+      "track_channel_performance": true,
+      "track_message_performance": true
+    },
+    "dashboards": [
+      "sdr_activity_dashboard",
+      "pipeline_generation_dashboard",
+      "roi_attribution_dashboard"
+    ]
+  }
+}

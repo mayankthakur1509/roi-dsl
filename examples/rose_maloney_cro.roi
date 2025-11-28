@@ -1,0 +1,188 @@
+# Rose Maloney - Clinical Operations Expert
+# ROI-DSL v2 - Complete Authority + vF Landing Page
+# Generates: MintSite, AI Agent, SMS Campaign, vROI Calculator, RMetrics, SK Skills
+
+# ============================================================
+# PERSONA & POSITIONING
+# ============================================================
+
+PERSONA Sponsor: "VP/EVP Clinical Operations"
+PERSONA Director: "Clinical Operations Director"
+PERSONA Oversight: "Vendor Oversight Lead"
+
+# ============================================================
+# VALUE PROPOSITIONS (GOALS)
+# ============================================================
+
+GOAL SubmissionRisk: "Avoid submission delays and regulatory exposure"
+GOAL TimelineRecovery: "Recover 2-8 weeks on delayed trials"
+GOAL VendorAlignment: "Restore CRO accountability and performance"
+GOAL DelayCost: "Prevent $2M+/month burn from operational drift"
+GOAL DeviationReduction: "Reduce protocol deviations 35%"
+GOAL ReworkPrevention: "Avoid $2.4M+ in CRO rework costs"
+
+# ============================================================
+# OPERATIONAL METRICS (Current State Assessment)
+# ============================================================
+
+METRIC VendorDrift: 0.45
+METRIC TimelineDelay: 0.67
+METRIC DeviationRate: 0.38
+METRIC TMFReadiness: 0.55
+METRIC MonitoringVariance: 0.52
+METRIC SubmissionExposure: 0.71
+
+# ============================================================
+# COMPUTED RISK METRICS (RMetrics)
+# ============================================================
+
+RMetric OperationalHealth: "TimelineDelay * 1.3 + VendorDrift * 1.2"
+RMetric SubmissionReadiness: "(TMFReadiness + MonitoringVariance) / 2"
+RMetric CriticalPathRisk: "(SubmissionExposure * 1.5 + TimelineDelay) / 2"
+RMetric OverallTrialRisk: "(VendorDrift + TimelineDelay + DeviationRate + TMFReadiness + MonitoringVariance + SubmissionExposure) / 6"
+
+# ============================================================
+# AUTOMATION TRIGGERS (COPS™ System)
+# ============================================================
+
+WHEN VendorDrift > 0.40 THEN escalate("vendor_accountability")
+WHEN TimelineDelay > 0.60 THEN alert("critical_path_intervention")
+WHEN DeviationRate > 0.35 THEN notify("protocol_training")
+WHEN TMFReadiness < 0.60 THEN escalate("submission_readiness")
+WHEN SubmissionExposure > 0.65 THEN alert("regulatory_risk")
+WHEN MonitoringVariance > 0.50 THEN escalate("cro_precision_audit")
+
+# ============================================================
+# PAGE VARIANTS & MESSAGING
+# ============================================================
+
+VARIANT Hero: "When Your Trial Cannot Fail"
+VARIANT Subhead: "Get a sponsor-grade view of CRO performance in 60 seconds"
+VARIANT CTA: "Get ROI in 60 Seconds"
+VARIANT SecondaryCTA: "Request Critical-Path Risk Scan"
+
+VARIANT Resume: "Clinical Operations Turnaround Expert"
+VARIANT Resume: "Submission-Readiness Command"
+VARIANT Resume: "Risk Governance Specialist"
+VARIANT Resume: "Vendor Accountability Leader"
+VARIANT Resume: "Global Execution Precision"
+
+# ============================================================
+# AUTHORITY CREDENTIALS
+# ============================================================
+
+CREDENTIAL Sites: "536+ Sites Managed"
+CREDENTIAL Patients: "8,292 Patients Across Trials"
+CREDENTIAL Experience: "30+ Years Clinical Operations"
+CREDENTIAL Specialties: "CNS • COPD • Anti-infective • Devices • Oncology"
+CREDENTIAL Countries: "12 Countries"
+CREDENTIAL ZeroFindings: "Zero Major Audit Findings"
+
+# ============================================================
+# CASE STUDIES (Success Stories)
+# ============================================================
+
+CASE_STUDY Asubio: "COPD Phase IIb – 40 Sites. Recovered 2 months. Vendor alignment restored. $2.4M rework prevented."
+CASE_STUDY CNS_PhaseIII: "CNS Phase III – US/EU. Monitoring variance stabilized globally. 35% deviation reduction."
+CASE_STUDY Pediatric: "Pediatric CNS Phase IV – NIH. Duke, Harvard, Yale unified under single cadence. Zero major findings."
+CASE_STUDY AntiInfective: "Anti-Infective Submission. Data + safety + TMF synchronized under pressure. Accelerated submission package."
+CASE_STUDY Novartis: "Novartis – Global CNS execution stabilization. Vendor accountability framework implemented."
+CASE_STUDY Schering: "Schering-Plough/Merck – Submission-ready package delivered under intense regulatory pressure."
+
+# ============================================================
+# SERVICES (Pillars)
+# ============================================================
+
+SERVICE CriticalPath: "Critical-Path Turnaround – Rescue delayed or failing trials"
+SERVICE SubmissionCommand: "Submission-Readiness Command – TMF, Data, Safety, Vendor alignment"
+SERVICE RiskGovernance: "Risk Governance & Prevention – Detect operational drift before failure"
+SERVICE VendorAccountability: "Vendor Accountability – Restore CRO performance and alignment"
+SERVICE GlobalExecution: "Global Execution Precision – Multi-site, multi-country coordination"
+SERVICE ChangeLeadership: "Change Leadership in Chaos – Stabilize operations under pressure"
+
+# ============================================================
+# TRAINING MODULES
+# ============================================================
+
+TRAINING MonitoringRisk: "Monitoring for Risk – Proactive deviation detection"
+TRAINING DeviationPrevention: "Protocol Deviation Prevention – Root cause elimination"
+TRAINING SubmissionReadiness: "Submission-Readiness 101 – Regulatory package preparation"
+TRAINING VendorManagement: "Vendor Management Excellence – CRO performance optimization"
+TRAINING CriticalPath: "Critical Path Analysis – Timeline recovery strategies"
+
+# ============================================================
+# vROI CALCULATOR PARAMETERS
+# ============================================================
+
+VROI_INPUT StudyPhase: "Phase (I / II / III / PM)"
+VROI_INPUT SiteCount: "Number of Sites"
+VROI_INPUT MonthlyBurn: "Monthly Burn Rate ($)"
+VROI_INPUT VendorCount: "Number of Vendors"
+VROI_INPUT ExpectedDBLock: "Expected DB Lock (weeks)"
+VROI_INPUT ActualDelay: "Actual Delay So Far (weeks)"
+VROI_INPUT CRORework: "CRO Rework Estimate (%)"
+VROI_INPUT SubmissionCritical: "Submission-Critical Exposure? (Y/N)"
+
+VROI_OUTPUT DelayCost: "Cost of Delay (Monthly)"
+VROI_OUTPUT ReworkValue: "Avoided Rework Value"
+VROI_OUTPUT SubmissionRiskIndex: "Submission Risk Index"
+VROI_OUTPUT RecoveryWindow: "Timeline Recovery Window"
+VROI_OUTPUT RecommendedAction: "Recommended Intervention"
+
+# ============================================================
+# STATS BAR (Trust Indicators)
+# ============================================================
+
+STAT Sites: "536 Sites"
+STAT Countries: "12 Countries"
+STAT DeviationReduction: "35% Deviation Reduction"
+STAT VendorTypes: "4 Major Vendor Types"
+STAT WeeksRecovered: "2-8 Weeks Recovered"
+STAT AuditFindings: "Zero Major Audit Findings"
+
+# ============================================================
+# MICRO-TRAINING CONTENT
+# ============================================================
+
+MICROTRAINING Title: "See the CRO Precision Method in 3 Minutes"
+MICROTRAINING Bullet1: "How risks spread inside a trial"
+MICROTRAINING Bullet2: "Why CRO drift destroys timelines"
+MICROTRAINING Bullet3: "How Rose stabilizes execution earlier"
+MICROTRAINING CTA: "Watch Micro-Training"
+
+# ============================================================
+# SEO & SEMANTIC METADATA
+# ============================================================
+
+SEO_TITLE: "Rose Maloney - Clinical Operations Turnaround Expert | CRO Performance"
+SEO_DESCRIPTION: "30+ years clinical operations expertise. Rescue delayed trials, restore vendor alignment, prevent submission delays. 536+ sites, 8,292 patients, zero major findings."
+SEO_KEYWORDS: "clinical operations, CRO oversight, trial rescue, submission readiness, vendor accountability, protocol deviations, CNS trials, COPD studies"
+
+# ============================================================
+# CONTACT & LOCATION
+# ============================================================
+
+CONTACT_NAME: "Rose Maloney"
+CONTACT_EMAIL: "MaloneyRosemary@gmail.com"
+CONTACT_LOCATION: "West Palm Beach, FL"
+CONTACT_PHONE: "+1 (561) 555-0123"
+
+# ============================================================
+# SEMANTIC KERNEL TAGS (AI Context)
+# ============================================================
+
+SK_TAG: "clinical_operations_expert"
+SK_TAG: "cro_oversight_specialist"
+SK_TAG: "submission_readiness"
+SK_TAG: "vendor_management"
+SK_TAG: "protocol_deviation_prevention"
+SK_TAG: "risk_governance"
+SK_TAG: "cns_trials"
+SK_TAG: "copd_studies"
+SK_TAG: "anti_infective_programs"
+
+# ============================================================
+# OUTPUT SPECIFICATION
+# ============================================================
+
+OUTPUT MintSite

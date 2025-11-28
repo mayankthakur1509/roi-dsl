@@ -1,0 +1,5 @@
+# Redirect rules
+/home /
+/contact /#contact
+/services /#services
+/roi /#vroi-calculator

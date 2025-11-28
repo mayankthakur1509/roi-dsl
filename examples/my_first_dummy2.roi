@@ -1,0 +1,55 @@
+# My First Dummy - Simple vROI Example Test
+# Purpose: Minimal example to understand mapping from .roi -> site
+
+# PERSONA
+PERSONA Owner: "Independent Consultant Test"
+
+# VALUE PROPOSITIONS (GOALS) - include quantification where possible
+GOAL IncreaseRevenue: "Increase annual consulting revenue Test"
+METRIC RevenueImpact: 50000          # $50,000 estimated impact
+
+GOAL SaveTime: "Reduce client onboarding time"
+METRIC TimeSavedWeeks: 4            # 4 weeks saved
+
+# SIMPLE METRICS (current state)
+METRIC CurrentClients: 8
+METRIC AvgProjectValue: 12000
+
+# COMPUTED RISK / VALUE (RMetric)
+RMetric EstimatedAnnualGain: "RevenueImpact * 1"
+RMetric EfficiencyScore: "(TimeSavedWeeks / 52) * 100"
+
+# AUTOMATION TRIGGERS (example)
+WHEN TimeSavedWeeks > 2 THEN notify("offer_fasttrack")
+WHEN RevenueImpact > 10000 THEN escalate("priority_outreach")
+
+# PAGE VARIANTS & MESSAGING
+VARIANT Hero: "Turn Your Expertise Into Predictable Revenue"
+VARIANT Subhead: "Simple, measurable results for independent consultants Test"
+VARIANT CTA: "Get Your vROI Now"
+
+# CREDENTIALS & STATS
+CREDENTIAL Projects: "120+ Projects Delivered"
+CREDENTIAL Years: "12 Years Experience"
+STAT Clients: "8 Clients"
+STAT AvgValue: "$12,000 Avg Project"
+
+# CASE STUDIES (short)
+CASE_STUDY small_co: "Helped SmallCo increase revenue by $15k in 6 months"
+CASE_STUDY startup_x: "Reduced onboarding time from 6 weeks to 2 weeks"
+
+# VROI CALCULATOR (inputs + outputs)
+VROI_INPUT NumClients: "Number of paying clients"
+VROI_INPUT AvgValue: "Average project value ($)"
+VROI_INPUT TimeSaved: "Estimated time saved (weeks)"
+
+VROI_OUTPUT ProjectedGain: "NumClients * AvgValue * 0.1"   # demo formula
+VROI_OUTPUT TimeBenefitWeeks: "TimeSaved"
+
+# CONTACT
+CONTACT_NAME: "Demo Consultant"
+CONTACT_EMAIL: "demo@example.com"
+CONTACT_PHONE: "+91 90000 00000"
+
+# OUTPUT (keep MintSite/Cloudflare compatible)
+OUTPUT MintSite
