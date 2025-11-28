@@ -3,21 +3,27 @@ name: Auto Compile ROI-DSL
 on:
   push:
     paths:
-      - 'examples/**/*.roi'   # Trigger only when .roi files change
+      - 'examples/**/*.roi'  # Trigger only when .roi files change
+  pull_request:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11'  # or your python version
+          python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install -r requirements.txt  # if you have requirements.txt
+        run: pip install -r requirements.txt
 
-      - name: Run ROI Compile
-        run: python roi_compile.py examples/your_file.roi  # adjust command as needed
+      - name: Auto Compile all ROI files
+        run: |
+          for file in examples/*.roi; do
+            echo "Compiling $file"
+            python roi_compile.py compile "$file"
+          done
