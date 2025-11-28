@@ -29,16 +29,19 @@ jobs:
 
       - name: Compile only changed ROI files
         run: |
-          echo "Changed files:"
-          echo "${{ github.event.head_commit.added }}"
-          echo "${{ github.event.head_commit.modified }}"
+          echo "Listing changed .roi files..."
+          
+          # Get changed ROI files in this push or PR
+          CHANGED_FILES=$(git diff --name-only origin/main...HEAD | grep '^examples/.*\.roi$' || true)
+          
+          if [ -z "$CHANGED_FILES" ]; then
+            echo "No .roi files changed. Skipping compilation."
+          else
+            echo "Files to compile:"
+            echo "$CHANGED_FILES"
 
-          # Combine added + modified files
-          CHANGED_FILES="${{ github.event.head_commit.added }} ${{ github.event.head_commit.modified }}"
-
-          for file in $CHANGED_FILES; do
-            if [[ $file == examples/*.roi ]]; then
+            for file in $CHANGED_FILES; do
               echo "Compiling $file"
               python roi_compile.py compile "$file"
-            fi
-          done
+            done
+          fi

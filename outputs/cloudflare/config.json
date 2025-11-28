@@ -1,175 +1,100 @@
 {
   "site_version": "2.1",
   "persona": {
-    "role": "Sponsor",
-    "description": "VP/EVP Clinical Operations",
-    "target_vertical": "clinical_research"
+    "role": "Owner",
+    "description": "Independent Consultant",
+    "target_vertical": "professional_services"
   },
   "value_framework": {
     "pillars": [
       {
-        "name": "SubmissionRisk",
-        "value": "Avoid submission delays and regulatory exposure"
+        "name": "IncreaseRevenue",
+        "value": "Increase annual consulting revenue"
       },
       {
-        "name": "TimelineRecovery",
-        "value": "Recover 2-8 weeks on delayed trials"
-      },
-      {
-        "name": "VendorAlignment",
-        "value": "Restore CRO accountability and performance"
-      },
-      {
-        "name": "DelayCost",
-        "value": "Prevent $2M+/month burn from operational drift"
-      },
-      {
-        "name": "DeviationReduction",
-        "value": "Reduce protocol deviations 35%"
-      },
-      {
-        "name": "ReworkPrevention",
-        "value": "Avoid $2.4M+ in CRO rework costs"
+        "name": "SaveTime",
+        "value": "Reduce client onboarding time"
       }
     ],
     "metrics": {
-      "VendorDrift": 0.45,
-      "TimelineDelay": 0.67,
-      "DeviationRate": 0.38,
-      "TMFReadiness": 0.55,
-      "MonitoringVariance": 0.52,
-      "SubmissionExposure": 0.71
+      "RevenueImpact": 50000.0,
+      "TimeSavedWeeks": 4.0,
+      "CurrentClients": 8.0,
+      "AvgProjectValue": 12000.0
     },
     "computed_metrics": {
-      "OperationalHealth": "TimelineDelay * 1.3 + VendorDrift * 1.2",
-      "SubmissionReadiness": "(TMFReadiness + MonitoringVariance) / 2",
-      "CriticalPathRisk": "(SubmissionExposure * 1.5 + TimelineDelay) / 2",
-      "OverallTrialRisk": "(VendorDrift + TimelineDelay + DeviationRate + TMFReadiness + MonitoringVariance + SubmissionExposure) / 6"
+      "EstimatedAnnualGain": "RevenueImpact * 1",
+      "EfficiencyScore": "(TimeSavedWeeks / 52) * 100"
     }
   },
   "automation": {
     "triggers": [
       {
-        "condition": "VendorDrift > 0.40",
-        "action": "escalate(\"vendor_accountability\")",
+        "condition": "TimeSavedWeeks > 2",
+        "action": "notify(\"offer_fasttrack\")",
         "type": "threshold_alert"
       },
       {
-        "condition": "TimelineDelay > 0.60",
-        "action": "alert(\"critical_path_intervention\")",
-        "type": "threshold_alert"
-      },
-      {
-        "condition": "DeviationRate > 0.35",
-        "action": "notify(\"protocol_training\")",
-        "type": "threshold_alert"
-      },
-      {
-        "condition": "TMFReadiness < 0.60",
-        "action": "escalate(\"submission_readiness\")",
-        "type": "threshold_alert"
-      },
-      {
-        "condition": "SubmissionExposure > 0.65",
-        "action": "alert(\"regulatory_risk\")",
-        "type": "threshold_alert"
-      },
-      {
-        "condition": "MonitoringVariance > 0.50",
-        "action": "escalate(\"cro_precision_audit\")",
+        "condition": "RevenueImpact > 10000",
+        "action": "escalate(\"priority_outreach\")",
         "type": "threshold_alert"
       }
     ]
   },
   "page_variants": {
-    "hero": "When Your Trial Cannot Fail",
-    "resume": "Global Execution Precision",
-    "cta": "Get ROI in 60 Seconds"
+    "hero": "Turn Your Expertise Into Predictable Revenue",
+    "resume": null,
+    "cta": "Get Your vROI Now"
   },
   "hero_section": {
-    "headline": "When Your Trial Cannot Fail",
-    "subheadline": "Avoid submission delays and regulatory exposure",
+    "headline": "Turn Your Expertise Into Predictable Revenue",
+    "subheadline": "Increase annual consulting revenue",
     "background_theme": "professional",
-    "cta_primary": "Get ROI in 60 Seconds"
+    "cta_primary": "Get Your vROI Now"
   },
   "value_props": [
     {
-      "title": "SubmissionRisk",
-      "description": "Avoid submission delays and regulatory exposure",
-      "icon": "clock",
-      "quantified": false
-    },
-    {
-      "title": "TimelineRecovery",
-      "description": "Recover 2-8 weeks on delayed trials",
-      "icon": "clock",
-      "quantified": false
-    },
-    {
-      "title": "VendorAlignment",
-      "description": "Restore CRO accountability and performance",
+      "title": "IncreaseRevenue",
+      "description": "Increase annual consulting revenue",
       "icon": "check-circle",
       "quantified": false
     },
     {
-      "title": "DelayCost",
-      "description": "Prevent $2M+/month burn from operational drift",
-      "icon": "dollar-sign",
-      "quantified": true
-    },
-    {
-      "title": "DeviationReduction",
-      "description": "Reduce protocol deviations 35%",
-      "icon": "check-circle",
-      "quantified": true
-    },
-    {
-      "title": "ReworkPrevention",
-      "description": "Avoid $2.4M+ in CRO rework costs",
-      "icon": "dollar-sign",
-      "quantified": true
+      "title": "SaveTime",
+      "description": "Reduce client onboarding time",
+      "icon": "clock",
+      "quantified": false
     }
   ],
   "case_studies": [
     {
       "case_id": "case_1",
-      "industry": "clinical_research",
-      "challenge": "Avoid submission delays and regulatory exposure",
-      "result": "Achieved SubmissionRisk",
+      "industry": "professional_services",
+      "challenge": "Increase annual consulting revenue",
+      "result": "Achieved IncreaseRevenue",
       "testimonial_placeholder": true
     },
     {
       "case_id": "case_2",
-      "industry": "clinical_research",
-      "challenge": "Recover 2-8 weeks on delayed trials",
-      "result": "Achieved TimelineRecovery",
-      "testimonial_placeholder": true
-    },
-    {
-      "case_id": "case_3",
-      "industry": "clinical_research",
-      "challenge": "Restore CRO accountability and performance",
-      "result": "Achieved VendorAlignment",
+      "industry": "professional_services",
+      "challenge": "Reduce client onboarding time",
+      "result": "Achieved SaveTime",
       "testimonial_placeholder": true
     }
   ],
   "cta": {
-    "primary_text": "Get ROI in 60 Seconds",
+    "primary_text": "Get Your vROI Now",
     "secondary_text": "Learn More",
-    "urgency_message": "High TimelineDelay detected - Take action now",
+    "urgency_message": "High RevenueImpact detected - Take action now",
     "button_style": "prominent"
   },
   "seo": {
-    "title": "VP/EVP Clinical Operations - Avoid submission delays and regulatory exposure",
-    "meta_description": "Help VP/EVP Clinical Operations achieve Avoid submission delays and regulatory exposure. Proven framework with measurable results.",
+    "title": "Independent Consultant - Increase annual consulting revenue",
+    "meta_description": "Help Independent Consultant achieve Increase annual consulting revenue. Proven framework with measurable results.",
     "keywords": [
-      "VP/EVP Clinical Operations",
-      "SubmissionRisk",
-      "TimelineRecovery",
-      "VendorAlignment",
-      "DelayCost",
-      "DeviationReduction",
-      "ReworkPrevention"
+      "Independent Consultant",
+      "IncreaseRevenue",
+      "SaveTime"
     ],
     "og_type": "website"
   }
