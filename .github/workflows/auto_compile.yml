@@ -1,5 +1,6 @@
 name: Auto Compile ROI-DSL
 
+# Trigger only on pushes or pull requests affecting ROI files
 on:
   push:
     paths:
@@ -13,27 +14,34 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 1. Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      # 2. Setup Python
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
 
+      # 3. Install dependencies if requirements.txt exists
       - name: Install dependencies
         run: |
           if [ -f requirements.txt ]; then
             pip install -r requirements.txt
           fi
 
-      - name: Compile only changed ROI files
+      # 4. Compile only changed ROI files
+      - name: Compile changed ROI files
         run: |
-          echo "Listing changed .roi files..."
-          
+          echo "Listing changed ROI files..."
+
+          # Fetch remote main to compare
+          git fetch origin main
+
           # Get changed ROI files in this push or PR
           CHANGED_FILES=$(git diff --name-only origin/main...HEAD | grep '^examples/.*\.roi$' || true)
-          
+
           if [ -z "$CHANGED_FILES" ]; then
             echo "No .roi files changed. Skipping compilation."
           else
@@ -41,7 +49,7 @@ jobs:
             echo "$CHANGED_FILES"
 
             for file in $CHANGED_FILES; do
-              echo "Compiling $file"
-              python roi_compile.py compile "$file"
+              echo "🔄 Compiling $file"
+              python roi_compile.py compile "$file" --output cloudflare
             done
           fi
