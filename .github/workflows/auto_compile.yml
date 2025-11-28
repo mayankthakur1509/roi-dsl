@@ -3,8 +3,10 @@ name: Auto Compile ROI-DSL
 on:
   push:
     paths:
-      - 'examples/**/*.roi'  # Trigger only when .roi files change
+      - 'examples/**/*.roi'
   pull_request:
+    paths:
+      - 'examples/**/*.roi'
 
 jobs:
   build:
@@ -25,23 +27,18 @@ jobs:
             pip install -r requirements.txt
           fi
 
-      - name: Auto Compile all ROI files
+      - name: Compile only changed ROI files
         run: |
-          shopt -s nullglob
-          files=(examples/*.roi)
-          if [ ${#files[@]} -eq 0 ]; then
-            echo "No ROI files to compile"
-          else
-            for file in "${files[@]}"; do
+          echo "Changed files:"
+          echo "${{ github.event.head_commit.added }}"
+          echo "${{ github.event.head_commit.modified }}"
+
+          # Combine added + modified files
+          CHANGED_FILES="${{ github.event.head_commit.added }} ${{ github.event.head_commit.modified }}"
+
+          for file in $CHANGED_FILES; do
+            if [[ $file == examples/*.roi ]]; then
               echo "Compiling $file"
               python roi_compile.py compile "$file"
-            done
-          fi
-
-      - name: Commit compiled outputs (optional)
-        run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions@github.com"
-          git add outputs/
-          git commit -m "Auto-compiled ROI outputs" || echo "No changes to commit"
-          git push || echo "Push failed (maybe no permissions)"
+            fi
+          done
