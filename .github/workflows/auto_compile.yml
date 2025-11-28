@@ -11,7 +11,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -19,11 +20,28 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: |
+          if [ -f requirements.txt ]; then
+            pip install -r requirements.txt
+          fi
 
       - name: Auto Compile all ROI files
         run: |
-          for file in examples/*.roi; do
-            echo "Compiling $file"
-            python roi_compile.py compile "$file"
-          done
+          shopt -s nullglob
+          files=(examples/*.roi)
+          if [ ${#files[@]} -eq 0 ]; then
+            echo "No ROI files to compile"
+          else
+            for file in "${files[@]}"; do
+              echo "Compiling $file"
+              python roi_compile.py compile "$file"
+            done
+          fi
+
+      - name: Commit compiled outputs (optional)
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add outputs/
+          git commit -m "Auto-compiled ROI outputs" || echo "No changes to commit"
+          git push || echo "Push failed (maybe no permissions)"
