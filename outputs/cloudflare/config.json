@@ -2,7 +2,7 @@
   "site_version": "2.1",
   "persona": {
     "role": "Developer",
-    "description": "Professional Web Developer!!",
+    "description": "Professional Web Developer Demo",
     "target_vertical": "professional_services"
   },
   "value_framework": {
@@ -95,10 +95,10 @@
     "button_style": "prominent"
   },
   "seo": {
-    "title": "Professional Web Developer!! - Build fast, responsive websites that load instantly",
-    "meta_description": "Help Professional Web Developer!! achieve Build fast, responsive websites that load instantly. Proven framework with measurable results.",
+    "title": "Professional Web Developer Demo - Build fast, responsive websites that load instantly",
+    "meta_description": "Help Professional Web Developer Demo achieve Build fast, responsive websites that load instantly. Proven framework with measurable results.",
     "keywords": [
-      "Professional Web Developer!!",
+      "Professional Web Developer Demo",
       "FastWebsites",
       "ModernUI",
       "HighPerformance"

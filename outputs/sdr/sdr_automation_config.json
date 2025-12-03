@@ -3,7 +3,7 @@
   "campaign_type": "value_first_outbound",
   "target_persona": {
     "primary_role": "Developer",
-    "description": "Professional Web Developer!!",
+    "description": "Professional Web Developer Demo",
     "pain_points": [
       "Build fast, responsive websites that load instantly",
       "Create modern, mobile-friendly UI/UX",
