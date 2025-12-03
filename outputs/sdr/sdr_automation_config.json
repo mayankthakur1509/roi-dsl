@@ -76,7 +76,7 @@
       {
         "day": 2,
         "type": "value_follow_up",
-        "subject": "Turn Your Expertise Into Predictable Revenue - {company}",
+        "subject": "Turn Your Expertise Into Predictable Revenue Dummy - {company}",
         "body_template": "{{first_name}},\n\nFollowing up on my previous email about Increase annual consulting revenue.\n\nHere's what we typically help {{title}}s achieve:\n\n\u2022 Increase annual consulting revenue\n\u2022 Reduce client onboarding time\n\nOne client ({{case_study_company}}) saw $15 in just 6 months.\n\nWant to see how this applies to {{company}}?\n\nCalendar link: {{calendar_link}}\n\nBest,\n{{sender_name}}",
         "personalization_tokens": [
           "first_name",
