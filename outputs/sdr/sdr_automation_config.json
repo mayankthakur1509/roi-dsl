@@ -3,7 +3,7 @@
   "campaign_type": "value_first_outbound",
   "target_persona": {
     "primary_role": "Owner",
-    "description": "Independent Consultant testing",
+    "description": "Independent Consultant",
     "pain_points": [
       "Increase annual consulting revenue",
       "Reduce client onboarding time"
