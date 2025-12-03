@@ -2,25 +2,22 @@
   "campaign_version": "2.1",
   "campaign_type": "value_first_outbound",
   "target_persona": {
-    "primary_role": "Sponsor",
-    "description": "VP/EVP Clinical Operations",
+    "primary_role": "Developer",
+    "description": "Professional Web Developer Test",
     "pain_points": [
-      "Avoid submission delays and regulatory exposure",
-      "Recover 2-8 weeks on delayed trials",
-      "Restore CRO accountability and performance",
-      "Prevent $2M+/month burn from operational drift",
-      "Reduce protocol deviations 35%",
-      "Avoid $2.4M+ in CRO rework costs"
+      "Build fast, responsive websites that load instantly",
+      "Create modern, mobile-friendly UI/UX",
+      "Optimize websites for speed and performance"
     ],
     "value_props": [
-      "Avoid submission delays and regulatory exposure",
-      "Recover 2-8 weeks on delayed trials",
-      "Restore CRO accountability and performance"
+      "Build fast, responsive websites that load instantly",
+      "Create modern, mobile-friendly UI/UX",
+      "Optimize websites for speed and performance"
     ],
     "firmographic_filters": {
       "company_size": "smb",
       "industries": [
-        "pharmaceutical"
+        "technology"
       ],
       "technologies": [
         "Salesforce",
@@ -31,11 +28,11 @@
   },
   "icp_filters": {
     "job_titles": [
-      "Sponsor",
-      "VP of Sponsor",
-      "Director of Sponsor",
-      "Head of Sponsor",
-      "Chief Sponsor Officer"
+      "Developer",
+      "VP of Developer",
+      "Director of Developer",
+      "Head of Developer",
+      "Chief Developer Officer"
     ],
     "seniority_levels": [
       "Director",
@@ -43,9 +40,7 @@
       "C-Level"
     ],
     "departments": [
-      "Clinical Operations",
-      "R&D",
-      "Regulatory"
+      "Operations"
     ],
     "company_size": {
       "min_employees": 50,
@@ -57,7 +52,7 @@
       "retired"
     ],
     "intent_signals": [
-      "searching for SubmissionRisk",
+      "searching for FastWebsites",
       "visiting competitor websites",
       "downloading industry reports",
       "attending relevant webinars"
@@ -68,8 +63,8 @@
       {
         "day": 0,
         "type": "cold_outreach",
-        "subject": "{first_name}, are you seeing VendorDrift?",
-        "body_template": "Hi {{first_name}},\n\nI noticed {{company}} is in the {{industry}} space. Based on what I've seen with similar companies, many are facing Avoid submission delays and regulatory exposure.\n\nQuick question: Are you currently tracking VendorDrift?\n\nMost {{title}}s I work with are surprised to learn their VendorDrift is typically 45% higher than they think.\n\nWorth a 15-minute conversation?\n\nBest,\n{{sender_name}}",
+        "subject": "{first_name}, are you seeing SpeedImprovement?",
+        "body_template": "Hi {{first_name}},\n\nI noticed {{company}} is in the {{industry}} space. Based on what I've seen with similar companies, many are facing Build fast, responsive websites that load instantly.\n\nQuick question: Are you currently tracking SpeedImprovement?\n\nMost {{title}}s I work with are surprised to learn their SpeedImprovement is typically 60% higher than they think.\n\nWorth a 15-minute conversation?\n\nBest,\n{{sender_name}}",
         "personalization_tokens": [
           "first_name",
           "company",
@@ -83,8 +78,8 @@
       {
         "day": 2,
         "type": "value_follow_up",
-        "subject": "When Your Trial Cannot Fail - {company}",
-        "body_template": "{{first_name}},\n\nFollowing up on my previous email about Avoid submission delays and regulatory exposure.\n\nHere's what we typically help {{title}}s achieve:\n\n\u2022 Avoid submission delays and regulatory exposure\n\u2022 Recover 2-8 weeks on delayed trials\n\u2022 Restore CRO accountability and performance\n\u2022 Prevent $2M+/month burn from operational drift\n\u2022 Reduce protocol deviations 35%\n\u2022 Avoid $2.4M+ in CRO rework costs\n\nOne client ({{case_study_company}}) saw $2.4M in just 2 months.\n\nWant to see how this applies to {{company}}?\n\nCalendar link: {{calendar_link}}\n\nBest,\n{{sender_name}}",
+        "subject": "Professional Web Developer Delivering Fast & Modern Websites testing - {company}",
+        "body_template": "{{first_name}},\n\nFollowing up on my previous email about Build fast, responsive websites that load instantly.\n\nHere's what we typically help {{title}}s achieve:\n\n\u2022 Build fast, responsive websites that load instantly\n\u2022 Create modern, mobile-friendly UI/UX\n\u2022 Optimize websites for speed and performance\n\nOne client ({{case_study_company}}) saw 60% in just 90 days.\n\nWant to see how this applies to {{company}}?\n\nCalendar link: {{calendar_link}}\n\nBest,\n{{sender_name}}",
         "personalization_tokens": [
           "first_name",
           "company",
@@ -103,7 +98,7 @@
         "day": 5,
         "type": "case_study",
         "subject": "How {{case_study_company}} prevented {{result}}",
-        "body_template": "{{first_name}},\n\nWanted to share a quick case study that might resonate.\n\n**Asubio**: COPD Phase IIb \u2013 40 Sites. Recovered 2 months. Vendor alignment restored. $2.4M rework prevented.\n\nThe situation sounds similar to what {{company}} might be facing.\n\nHappy to walk you through the details if you're interested.\n\nBest time for a quick call?\n\n{{sender_name}}",
+        "body_template": "{{first_name}},\n\nWanted to share a quick case study that might resonate.\n\n**speed_boost**: Improved a client's website speed by 60% through optimization and refactoring\n\nThe situation sounds similar to what {{company}} might be facing.\n\nHappy to walk you through the details if you're interested.\n\nBest time for a quick call?\n\n{{sender_name}}",
         "personalization_tokens": [
           "first_name",
           "company",
@@ -121,7 +116,7 @@
         "day": 8,
         "type": "risk_urgency",
         "subject": "{{first_name}}, the cost of waiting",
-        "body_template": "{{first_name}},\n\nQuick note on timing.\n\nBased on industry data, when VendorDrift reaches 45%, companies typically see {{negative_outcome}} within 60-90 days.\n\nNot trying to create urgency artificially - just sharing what we've observed.\n\nIf you're already above 45%, worth having a conversation sooner rather than later.\n\nCalendar: {{calendar_link}}\n\n{{sender_name}}",
+        "body_template": "{{first_name}},\n\nQuick note on timing.\n\nBased on industry data, when SpeedImprovement reaches 60%, companies typically see {{negative_outcome}} within 60-90 days.\n\nNot trying to create urgency artificially - just sharing what we've observed.\n\nIf you're already above 60%, worth having a conversation sooner rather than later.\n\nCalendar: {{calendar_link}}\n\n{{sender_name}}",
         "personalization_tokens": [
           "first_name",
           "company",
@@ -176,7 +171,7 @@
       {
         "day": 0,
         "type": "connection_request",
-        "message_template": "Hi {{first_name}},\n\nI help {{title}}s in {{industry}} with Avoid submission delays and regulatory exposure. \n\nWould love to connect and share some insights relevant to {{company}}.\n\nBest,\n{{sender_name}}",
+        "message_template": "Hi {{first_name}},\n\nI help {{title}}s in {{industry}} with Build fast, responsive websites that load instantly. \n\nWould love to connect and share some insights relevant to {{company}}.\n\nBest,\n{{sender_name}}",
         "personalization_tokens": [
           "first_name",
           "title",
@@ -190,7 +185,7 @@
         "day": 3,
         "type": "value_message",
         "condition": "connection_accepted",
-        "message_template": "Thanks for connecting, {{first_name}}!\n\nI noticed {{company}} is growing rapidly. \n\nWe've helped similar companies achieve:\n\u2022 Avoid submission delays and regulatory exposure\n\u2022 Recover 2-8 weeks on delayed trials\n\u2022 Restore CRO accountability and performance\n\nWorth a quick chat to see if there's a fit?\n\nMy calendar: {{calendar_link}}",
+        "message_template": "Thanks for connecting, {{first_name}}!\n\nI noticed {{company}} is growing rapidly. \n\nWe've helped similar companies achieve:\n\u2022 Build fast, responsive websites that load instantly\n\u2022 Create modern, mobile-friendly UI/UX\n\u2022 Optimize websites for speed and performance\n\nWorth a quick chat to see if there's a fit?\n\nMy calendar: {{calendar_link}}",
         "personalization_tokens": [
           "first_name",
           "company",
@@ -226,7 +221,7 @@
       {
         "day": 0,
         "type": "intro_sms",
-        "message_template": "Hi {{first_name}}, Avoid submission delays and regulatory exposure. Are you the right person to discuss this? Reply YES or NO.",
+        "message_template": "Hi {{first_name}}, Build fast, responsive websites that load instantly. Are you the right person to discuss this? Reply YES or NO.",
         "character_limit": 160,
         "send_window": "10am-4pm local time",
         "require_opt_in": true
@@ -254,12 +249,12 @@
         "day": 3,
         "type": "discovery_call",
         "call_script": {
-          "opener": "Hi {{first_name}}, this is {{caller_name}} from {{company}}. I sent you an email about Avoid submission delays and regulatory exposure. Do you have 2 minutes?",
-          "pitch": "We help {{title}}s prevent operational issues. Quick question: are you currently tracking VendorDrift?",
+          "opener": "Hi {{first_name}}, this is {{caller_name}} from {{company}}. I sent you an email about Build fast, responsive websites that load instantly. Do you have 2 minutes?",
+          "pitch": "We help {{title}}s prevent operational issues. Quick question: are you currently tracking SpeedImprovement?",
           "qualifying_questions": [
-            "How would you rate your current VendorDrift?",
-            "How would you rate your current TimelineDelay?",
-            "How would you rate your current DeviationRate?"
+            "How would you rate your current SpeedImprovement?",
+            "How would you rate your current UIDeliveryScore?",
+            "How would you rate your current PerfBoost?"
           ],
           "objection_handlers": {
             "no_time": "I understand. Can I send you a 60-second ROI calculator instead? Takes less time than this call.",
@@ -268,7 +263,7 @@
           },
           "close": "Based on what you shared, I think there's a fit. Can we schedule 15 minutes next week to dive deeper?"
         },
-        "voicemail_script": "Hi {{first_name}}, {{caller_name}} here. Quick question about Avoid submission delays and regulatory exposure. I'll send details via email. My direct line is {{phone}}.",
+        "voicemail_script": "Hi {{first_name}}, {{caller_name}} here. Quick question about Build fast, responsive websites that load instantly. I'll send details via email. My direct line is {{phone}}.",
         "call_window": "10am-4pm local time",
         "max_attempts": 3
       }
@@ -278,7 +273,7 @@
         "trigger": "website_visit",
         "type": "proactive_chat",
         "delay_seconds": 15,
-        "message": "Hi! I noticed you're looking at Avoid submission delays and regulatory exposure. I'm an AI assistant - can I answer any questions?",
+        "message": "Hi! I noticed you're looking at Build fast, responsive websites that load instantly. I'm an AI assistant - can I answer any questions?",
         "conversation_flow": [
           {
             "step": 1,
@@ -288,15 +283,15 @@
           {
             "step": 2,
             "type": "qualification",
-            "message": "I help companies with Avoid submission delays and regulatory exposure. Is this relevant to you?"
+            "message": "I help companies with Build fast, responsive websites that load instantly. Is this relevant to you?"
           },
           {
             "step": 3,
             "type": "discovery",
             "questions": [
-              "How would you describe your VendorDrift?",
-              "How would you describe your TimelineDelay?",
-              "How would you describe your DeviationRate?"
+              "How would you describe your SpeedImprovement?",
+              "How would you describe your UIDeliveryScore?",
+              "How would you describe your PerfBoost?"
             ]
           },
           {
@@ -320,15 +315,15 @@
           {
             "step": 2,
             "type": "qualification",
-            "message": "I help companies with Avoid submission delays and regulatory exposure. Is this relevant to you?"
+            "message": "I help companies with Build fast, responsive websites that load instantly. Is this relevant to you?"
           },
           {
             "step": 3,
             "type": "discovery",
             "questions": [
-              "How would you describe your VendorDrift?",
-              "How would you describe your TimelineDelay?",
-              "How would you describe your DeviationRate?"
+              "How would you describe your SpeedImprovement?",
+              "How would you describe your UIDeliveryScore?",
+              "How would you describe your PerfBoost?"
             ]
           },
           {
@@ -428,12 +423,11 @@
         "competitor_research": 12
       },
       "pain_indicators": {
-        "VendorDrift_above_threshold": 9,
-        "TimelineDelay_above_threshold": 13,
-        "DeviationRate_above_threshold": 7,
-        "TMFReadiness_above_threshold": 11,
-        "MonitoringVariance_above_threshold": 10,
-        "SubmissionExposure_above_threshold": 14
+        "SpeedImprovement_above_threshold": 12,
+        "UIDeliveryScore_above_threshold": 18,
+        "PerfBoost_above_threshold": 10,
+        "DeliveredWebsites_above_threshold": 800,
+        "ExpertiseLevel_above_threshold": 19
       },
       "decay": {
         "enabled": true,
@@ -449,95 +443,6 @@
     }
   },
   "triggers": [
-    {
-      "trigger_name": "sdr_VendorDrift_>_0.40",
-      "condition": "VendorDrift > 0.40",
-      "sdr_actions": [
-        "notify_human_sdr",
-        "send_urgent_email",
-        "attempt_call"
-      ],
-      "priority": "medium",
-      "notification_channels": [
-        "slack",
-        "sms",
-        "email"
-      ]
-    },
-    {
-      "trigger_name": "sdr_TimelineDelay_>_0.60",
-      "condition": "TimelineDelay > 0.60",
-      "sdr_actions": [
-        "send_email",
-        "update_lead_score",
-        "add_to_sequence"
-      ],
-      "priority": "medium",
-      "notification_channels": [
-        "slack",
-        "sms",
-        "email"
-      ]
-    },
-    {
-      "trigger_name": "sdr_DeviationRate_>_0.35",
-      "condition": "DeviationRate > 0.35",
-      "sdr_actions": [
-        "send_email",
-        "slack_notification"
-      ],
-      "priority": "medium",
-      "notification_channels": [
-        "slack",
-        "sms",
-        "email"
-      ]
-    },
-    {
-      "trigger_name": "sdr_TMFReadiness_<_0.60",
-      "condition": "TMFReadiness < 0.60",
-      "sdr_actions": [
-        "notify_human_sdr",
-        "send_urgent_email",
-        "attempt_call"
-      ],
-      "priority": "medium",
-      "notification_channels": [
-        "slack",
-        "sms",
-        "email"
-      ]
-    },
-    {
-      "trigger_name": "sdr_SubmissionExposure_>_0.65",
-      "condition": "SubmissionExposure > 0.65",
-      "sdr_actions": [
-        "send_email",
-        "update_lead_score",
-        "add_to_sequence"
-      ],
-      "priority": "medium",
-      "notification_channels": [
-        "slack",
-        "sms",
-        "email"
-      ]
-    },
-    {
-      "trigger_name": "sdr_MonitoringVariance_>_0.50",
-      "condition": "MonitoringVariance > 0.50",
-      "sdr_actions": [
-        "notify_human_sdr",
-        "send_urgent_email",
-        "attempt_call"
-      ],
-      "priority": "medium",
-      "notification_channels": [
-        "slack",
-        "sms",
-        "email"
-      ]
-    },
     {
       "trigger_name": "high_intent_detected",
       "condition": "lead_score > 70",
