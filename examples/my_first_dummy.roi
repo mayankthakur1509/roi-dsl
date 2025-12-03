@@ -2,7 +2,7 @@
 # Purpose: Minimal example to understand mapping from .roi -> site
 
 # PERSONA
-PERSONA Owner: "Independent Consultant"
+PERSONA Owner: "Independent Consultant Testing John"
 
 # VALUE PROPOSITIONS (GOALS) - include quantification where possible
 GOAL IncreaseRevenue: "Increase annual consulting revenue"
