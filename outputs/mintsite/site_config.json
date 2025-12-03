@@ -1,68 +1,67 @@
 {
   "site_version": "2.1",
   "persona": {
-    "role": "Owner",
-    "description": "Independent Consultant Testing demo",
+    "role": "Developer",
+    "description": "Professional Web Developer Test15",
     "target_vertical": "professional_services"
   },
   "value_framework": {
     "pillars": [
       {
-        "name": "IncreaseRevenue",
-        "value": "Increase annual consulting revenue"
+        "name": "FastWebsites",
+        "value": "Build fast, responsive websites that load instantly"
       },
       {
-        "name": "SaveTime",
-        "value": "Reduce client onboarding time"
+        "name": "ModernUI",
+        "value": "Create modern, mobile-friendly UI/UX"
+      },
+      {
+        "name": "HighPerformance",
+        "value": "Optimize websites for speed and performance"
       }
     ],
     "metrics": {
-      "RevenueImpact": 50000.0,
-      "TimeSavedWeeks": 4.0,
-      "CurrentClients": 8.0,
-      "AvgProjectValue": 12000.0
+      "SpeedImprovement": 0.6,
+      "UIDeliveryScore": 0.9,
+      "PerfBoost": 0.5,
+      "DeliveredWebsites": 40.0,
+      "ExpertiseLevel": 0.95
     },
     "computed_metrics": {
-      "EstimatedAnnualGain": "RevenueImpact * 1",
-      "EfficiencyScore": "(TimeSavedWeeks / 52) * 100"
+      "OverallImpact": "(SpeedImprovement + PerfBoost + UIDeliveryScore) / 3"
     }
   },
   "automation": {
-    "triggers": [
-      {
-        "condition": "TimeSavedWeeks > 2",
-        "action": "notify(\"offer_fasttrack\")",
-        "type": "threshold_alert"
-      },
-      {
-        "condition": "RevenueImpact > 10000",
-        "action": "escalate(\"priority_outreach\")",
-        "type": "threshold_alert"
-      }
-    ]
+    "triggers": []
   },
   "page_variants": {
-    "hero": "Turn Your Expertise Into Predictable Revenue Dummy",
+    "hero": "Professional Web Developer Delivering Fast & Modern Websites testing",
     "resume": null,
-    "cta": "Get Your vROI Now"
+    "cta": "Get Your Website Upgrade"
   },
   "hero_section": {
-    "headline": "Turn Your Expertise Into Predictable Revenue Dummy",
-    "subheadline": "Increase annual consulting revenue",
+    "headline": "Professional Web Developer Delivering Fast & Modern Websites testing",
+    "subheadline": "Build fast, responsive websites that load instantly",
     "background_theme": "professional",
-    "cta_primary": "Get Your vROI Now"
+    "cta_primary": "Get Your Website Upgrade"
   },
   "value_props": [
     {
-      "title": "IncreaseRevenue",
-      "description": "Increase annual consulting revenue",
+      "title": "FastWebsites",
+      "description": "Build fast, responsive websites that load instantly",
       "icon": "check-circle",
       "quantified": false
     },
     {
-      "title": "SaveTime",
-      "description": "Reduce client onboarding time",
-      "icon": "clock",
+      "title": "ModernUI",
+      "description": "Create modern, mobile-friendly UI/UX",
+      "icon": "check-circle",
+      "quantified": false
+    },
+    {
+      "title": "HighPerformance",
+      "description": "Optimize websites for speed and performance",
+      "icon": "check-circle",
       "quantified": false
     }
   ],
@@ -70,31 +69,39 @@
     {
       "case_id": "case_1",
       "industry": "professional_services",
-      "challenge": "Increase annual consulting revenue",
-      "result": "Achieved IncreaseRevenue",
+      "challenge": "Build fast, responsive websites that load instantly",
+      "result": "Achieved FastWebsites",
       "testimonial_placeholder": true
     },
     {
       "case_id": "case_2",
       "industry": "professional_services",
-      "challenge": "Reduce client onboarding time",
-      "result": "Achieved SaveTime",
+      "challenge": "Create modern, mobile-friendly UI/UX",
+      "result": "Achieved ModernUI",
+      "testimonial_placeholder": true
+    },
+    {
+      "case_id": "case_3",
+      "industry": "professional_services",
+      "challenge": "Optimize websites for speed and performance",
+      "result": "Achieved HighPerformance",
       "testimonial_placeholder": true
     }
   ],
   "cta": {
-    "primary_text": "Get Your vROI Now",
+    "primary_text": "Get Your Website Upgrade",
     "secondary_text": "Learn More",
-    "urgency_message": "High RevenueImpact detected - Take action now",
+    "urgency_message": "High UIDeliveryScore detected - Take action now",
     "button_style": "prominent"
   },
   "seo": {
-    "title": "Independent Consultant Testing demo - Increase annual consulting revenue",
-    "meta_description": "Help Independent Consultant Testing demo achieve Increase annual consulting revenue. Proven framework with measurable results.",
+    "title": "Professional Web Developer Test15 - Build fast, responsive websites that load instantly",
+    "meta_description": "Help Professional Web Developer Test15 achieve Build fast, responsive websites that load instantly. Proven framework with measurable results.",
     "keywords": [
-      "Independent Consultant Testing demo",
-      "IncreaseRevenue",
-      "SaveTime"
+      "Professional Web Developer Test15",
+      "FastWebsites",
+      "ModernUI",
+      "HighPerformance"
     ],
     "og_type": "website"
   }
