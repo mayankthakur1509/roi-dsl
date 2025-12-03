@@ -3,8 +3,8 @@ name: Auto-compile ROI files and commit outputs
 on:
   push:
     paths:
-      - '**/*.roi'
-      - 'compiler/**'
+      - "**/*.roi"
+      - "roi_compile.py"
 
 permissions:
   contents: write
@@ -12,8 +12,9 @@ permissions:
 jobs:
   compile-and-commit:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repository (with credentials)
+      - name: Checkout repository
         uses: actions/checkout@v4
         with:
           persist-credentials: true
@@ -22,27 +23,17 @@ jobs:
       - name: Set up Python 3.11
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
+          python-version: "3.11"
 
-      - name: Ensure PYTHON UTF-8
-        run: echo "PYTHONUTF8=1" >> $GITHUB_ENV
-
-      - name: Install dependencies (if any)
+      - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip || true
-          # pip install -r requirements.txt  # uncomment if you have requirements
+          python -m pip install --upgrade pip
 
-      - name: Determine changed .roi files
-        id: changed_files
+      - name: Detect changed ROI files
+        id: changes
         run: |
-          set -e
-          # Fetch enough history for comparison (safe)
-          git fetch --no-tags --prune --depth=2 origin ${{ github.ref }} || true
-
           BEFORE="${{ github.event.before }}"
           AFTER="${{ github.sha }}"
-          echo "Before: $BEFORE"
-          echo "After:  $AFTER"
 
           if [ "$BEFORE" = "0000000000000000000000000000000000000000" ]; then
             FILES=$(git diff --name-only $AFTER^ $AFTER | grep '\.roi$' || true)
@@ -50,66 +41,38 @@ jobs:
             FILES=$(git diff --name-only "$BEFORE" "$AFTER" | grep '\.roi$' || true)
           fi
 
-          # Expose as multiline output
-          echo "FILES_FOUND<<EOF" >> $GITHUB_OUTPUT
+          echo "changed_files<<EOF" >> $GITHUB_OUTPUT
           echo "$FILES" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Show changed ROI files
+        run: echo "${{ steps.changes.outputs.changed_files }}"
+
+      - name: Compile changed ROI files
+        if: ${{ steps.changes.outputs.changed_files != '' }}
         run: |
-          echo "Changed .roi files:"
-          echo "${{ steps.changed_files.outputs.FILES_FOUND }}"
-
-      - name: Compile changed .roi files
-        env:
-          PYTHONUTF8: 1
-        run: |
-          set -euo pipefail
-          FILES="${{ steps.changed_files.outputs.FILES_FOUND }}"
-          if [ -z "$FILES" ]; then
-            echo "No .roi files to compile. Exiting."
-            exit 0
-          fi
-
-          echo "Compiling the following .roi files:"
-          echo "$FILES"
-
-          # Iterate each line (each changed .roi). Using echo|while avoids here-doc parsing issues.
-          echo "$FILES" | tr '\r' '\n' | while IFS= read -r f || [ -n "$f" ]; do
-            if [ -z "$f" ]; then
-              continue
-            fi
-            echo ">>> Compiling: $f"
-            # compile, but don't fail the entire job if one file errors; continue to next file
-            if ! python compiler/roi_compile.py compile "$f" --verbose ; then
-              echo "Compiler failed for $f (continuing)"
+          echo "${{ steps.changes.outputs.changed_files }}" | while read f; do
+            if [ -n "$f" ]; then
+              echo "Compiling: $f"
+              python roi_compile.py compile "$f" --verbose || echo "Compiler failed for $f"
             fi
           done
 
-      - name: Show outputs folder
+      - name: Show outputs
         run: |
-          echo "=== outputs directory (after compile) ==="
-          ls -R outputs || true
+          ls -R outputs || echo "No outputs directory"
 
-      - name: Commit and push generated outputs (if any)
-        env:
-          GIT_AUTHOR_NAME: "github-actions[bot]"
-          GIT_AUTHOR_EMAIL: "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Commit and push outputs
         run: |
-          set -e
-          git config user.name "$GIT_AUTHOR_NAME"
-          git config user.email "$GIT_AUTHOR_EMAIL"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          # Add outputs only (avoid adding unintentional files)
           git add outputs || true
 
-          # If there are no staged changes, exit
-          if [ -z "$(git status --porcelain)" ]; then
-            echo "No generated changes to commit."
+          if git diff --cached --quiet; then
+            echo "No outputs changed."
             exit 0
           fi
 
-          git commit -m "chore(ci): update generated outputs from .roi [ci skip]" || echo "No changes to commit"
-          # Push back to the branch that triggered the workflow
-          git push origin "HEAD:${{ github.ref_name }}"
-
+          git commit -m "Auto-compiled ROI files [ci skip]"
+          git push origin HEAD:${{ github.ref_name }}
