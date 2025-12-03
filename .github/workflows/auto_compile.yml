@@ -5,6 +5,7 @@ on:
     paths:
       - "**/*.roi"
       - "roi_compile.py"
+      - "compiler/**"
 
 permissions:
   contents: write
@@ -14,12 +15,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # -----------------------------
+      # CHECKOUT
+      # -----------------------------
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           persist-credentials: true
           fetch-depth: 0
 
+      # -----------------------------
+      # PYTHON
+      # -----------------------------
       - name: Set up Python 3.11
         uses: actions/setup-python@v4
         with:
@@ -29,6 +36,9 @@ jobs:
         run: |
           python -m pip install --upgrade pip
 
+      # -----------------------------
+      # DETECT CHANGED ROI FILES
+      # -----------------------------
       - name: Detect changed ROI files
         id: changes
         run: |
@@ -48,20 +58,41 @@ jobs:
       - name: Show changed ROI files
         run: echo "${{ steps.changes.outputs.changed_files }}"
 
+      # -----------------------------
+      # COMPILE ALL OUTPUT TYPES
+      # (MintSite + Cloudflare + SDR)
+      # -----------------------------
       - name: Compile changed ROI files
         if: ${{ steps.changes.outputs.changed_files != '' }}
         run: |
           echo "${{ steps.changes.outputs.changed_files }}" | while read f; do
             if [ -n "$f" ]; then
-              echo "Compiling: $f"
-              python roi_compile.py compile "$f" --verbose || echo "Compiler failed for $f"
+              echo "----------------------------------"
+              echo "🔥 Compiling: $f"
+              echo "----------------------------------"
+
+              echo "➡ MintSite"
+              python roi_compile.py compile "$f" --output mintsite --verbose || echo "MintSite failed"
+
+              echo "➡ Cloudflare"
+              python roi_compile.py compile "$f" --output cloudflare --verbose || echo "Cloudflare failed"
+
+              echo "➡ SDR Automation"
+              python roi_compile.py compile "$f" --output sdr --verbose || echo "SDR failed"
             fi
           done
 
+      # -----------------------------
+      # SHOW OUTPUTS
+      # -----------------------------
       - name: Show outputs
         run: |
-          ls -R outputs || echo "No outputs directory"
+          echo "==== OUTPUTS GENERATED ===="
+          ls -R outputs || echo "No outputs directory found"
 
+      # -----------------------------
+      # COMMIT & PUSH
+      # -----------------------------
       - name: Commit and push outputs
         run: |
           git config user.name "github-actions[bot]"
@@ -74,5 +105,5 @@ jobs:
             exit 0
           fi
 
-          git commit -m "Auto-compiled ROI files [ci skip]"
+          git commit -m "Auto-compiled ROI files (MintSite + Cloudflare + SDR) [ci skip]"
           git push origin HEAD:${{ github.ref_name }}
