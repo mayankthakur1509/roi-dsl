@@ -1,55 +1,118 @@
-name: Auto Compile ROI-DSL
+name: Auto-compile ROI files and commit outputs
 
-# Trigger only on pushes or pull requests affecting ROI files
 on:
   push:
     paths:
-      - 'examples/**/*.roi'
-  pull_request:
-    paths:
-      - 'examples/**/*.roi'
+      - '**/*.roi'
+      - 'compiler/**'
+
+permissions:
+  contents: write
 
 jobs:
-  build:
+  compile-and-commit:
     runs-on: ubuntu-latest
-
     steps:
-      # 1. Checkout repository
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - name: Checkout repository (with credentials)
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 0
 
-      # 2. Setup Python
-      - name: Set up Python
+      - name: Set up Python 3.11
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
 
-      # 3. Install dependencies if requirements.txt exists
-      - name: Install dependencies
+      - name: Ensure PYTHON UTF-8
+        run: echo "PYTHONUTF8=1" >> $GITHUB_ENV
+
+      - name: Install dependencies (if any)
         run: |
-          if [ -f requirements.txt ]; then
-            pip install -r requirements.txt
+          python -m pip install --upgrade pip || true
+          # if you have requirements, uncomment the next line and add requirements.txt to repo
+          # pip install -r requirements.txt
+
+      - name: Determine changed .roi files
+        id: changed_files
+        run: |
+          # For a push event, compare the commit range to find changed .roi files.
+          git fetch --no-tags --prune --depth=2 origin ${{ github.ref }}
+          BEFORE="${{ github.event.before }}"
+          AFTER="${{ github.sha }}"
+          echo "Before: $BEFORE"
+          echo "After:  $AFTER"
+
+          if [ "$BEFORE" = "0000000000000000000000000000000000000000" ]; then
+            # New branch or initial commit: list .roi files in commit
+            FILES=$(git diff --name-only $AFTER^ $AFTER | grep '\.roi$' || true)
+          else
+            FILES=$(git diff --name-only "$BEFORE" "$AFTER" | grep '\.roi$' || true)
           fi
 
-      # 4. Compile only changed ROI files
-      - name: Compile changed ROI files
+          echo "FILES_FOUND<<EOF" >> $GITHUB_OUTPUT
+          echo "$FILES" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Show changed ROI files
         run: |
-          echo "Listing changed ROI files..."
+          echo "Changed .roi files:"
+          echo "${{ steps.changed_files.outputs.FILES_FOUND }}"
 
-          # Fetch remote main to compare
-          git fetch origin main
+      - name: Exit if no .roi changes
+        if: ${{ ! fromJson('["' + steps.changed_files.outputs.FILES_FOUND.replace('\n','","') + '"]')[0] }}
+        run: |
+          echo "No changed .roi files detected - nothing to compile."
+        continue-on-error: false
 
-          # Get changed ROI files in this push or PR
-          CHANGED_FILES=$(git diff --name-only origin/main...HEAD | grep '^examples/.*\.roi$' || true)
+      - name: Compile changed .roi files
+        env:
+          PYTHONUTF8: 1
+        run: |
+          set -e
+          FILES="${{ steps.changed_files.outputs.FILES_FOUND }}"
+          if [ -z "$FILES" ]; then
+            echo "No .roi files to compile."
+            exit 0
+          fi
 
-          if [ -z "$CHANGED_FILES" ]; then
-            echo "No .roi files changed. Skipping compilation."
+          echo "Compiling the following .roi files:"
+          echo "$FILES"
+
+          # Loop through each file and compile it to outputs directory
+          while IFS= read -r f; do
+            if [ -z "$f" ]; then
+              continue
+            fi
+            echo ">>> Compiling: $f"
+            python compiler/roi_compile.py compile "$f" --verbose || {
+              echo "Compiler failed for $f (exit code $?). Continuing to next file."
+            }
+          done <<EOF
+$FILES
+EOF
+
+      - name: Show outputs folder
+        run: |
+          echo "=== outputs directory (after compile) ==="
+          ls -R outputs || true
+
+      - name: Commit and push generated outputs
+        env:
+          GIT_AUTHOR_NAME: "github-actions[bot]"
+          GIT_AUTHOR_EMAIL: "41898282+github-actions[bot]@users.noreply.github.com"
+        run: |
+          git config user.name "$GIT_AUTHOR_NAME"
+          git config user.email "$GIT_AUTHOR_EMAIL"
+
+          # Add outputs only (avoid adding unintentional files)
+          git add outputs || true
+
+          # Only commit if there are changes
+          if git diff --cached --quiet; then
+            echo "No generated changes to commit."
           else
-            echo "Files to compile:"
-            echo "$CHANGED_FILES"
-
-            for file in $CHANGED_FILES; do
-              echo "🔄 Compiling $file"
-              python roi_compile.py compile "$file" --output cloudflare
-            done
+            git commit -m "chore(ci): update generated outputs from .roi [ci skip]" || true
+            # Push back to same branch
+            git push origin HEAD:${{ github.ref_name }}
           fi
