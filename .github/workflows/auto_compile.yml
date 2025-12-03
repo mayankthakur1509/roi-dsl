@@ -36,7 +36,7 @@ jobs:
         id: changed_files
         run: |
           set -e
-          # Fetch enough history for comparison
+          # Fetch enough history for comparison (safe)
           git fetch --no-tags --prune --depth=2 origin ${{ github.ref }} || true
 
           BEFORE="${{ github.event.before }}"
@@ -45,7 +45,6 @@ jobs:
           echo "After:  $AFTER"
 
           if [ "$BEFORE" = "0000000000000000000000000000000000000000" ]; then
-            # initial commit or new branch: list .roi files in this commit
             FILES=$(git diff --name-only $AFTER^ $AFTER | grep '\.roi$' || true)
           else
             FILES=$(git diff --name-only "$BEFORE" "$AFTER" | grep '\.roi$' || true)
@@ -65,7 +64,7 @@ jobs:
         env:
           PYTHONUTF8: 1
         run: |
-          set -e
+          set -euo pipefail
           FILES="${{ steps.changed_files.outputs.FILES_FOUND }}"
           if [ -z "$FILES" ]; then
             echo "No .roi files to compile. Exiting."
@@ -75,17 +74,17 @@ jobs:
           echo "Compiling the following .roi files:"
           echo "$FILES"
 
-          # Loop through each file and compile it to outputs directory
-          while IFS= read -r f; do
+          # Iterate each line (each changed .roi). Using echo|while avoids here-doc parsing issues.
+          echo "$FILES" | tr '\r' '\n' | while IFS= read -r f || [ -n "$f" ]; do
             if [ -z "$f" ]; then
               continue
             fi
             echo ">>> Compiling: $f"
-            # compile, but don't fail the entire job if one file errors; capture non-zero code
-            python compiler/roi_compile.py compile "$f" --verbose || echo "Compiler failed for $f (continuing)"
-          done <<'EOF'
-$FILES
-EOF
+            # compile, but don't fail the entire job if one file errors; continue to next file
+            if ! python compiler/roi_compile.py compile "$f" --verbose ; then
+              echo "Compiler failed for $f (continuing)"
+            fi
+          done
 
       - name: Show outputs folder
         run: |
@@ -112,4 +111,5 @@ EOF
 
           git commit -m "chore(ci): update generated outputs from .roi [ci skip]" || echo "No changes to commit"
           # Push back to the branch that triggered the workflow
-          git push origin HEAD:${{ github.ref_name }}
+          git push origin "HEAD:${{ github.ref_name }}"
+
