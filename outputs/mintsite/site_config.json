@@ -1,175 +1,107 @@
 {
   "site_version": "2.1",
   "persona": {
-    "role": "Sponsor",
-    "description": "VP/EVP Clinical Operations",
-    "target_vertical": "clinical_research"
+    "role": "Developer",
+    "description": "Professional Web Developer",
+    "target_vertical": "professional_services"
   },
   "value_framework": {
     "pillars": [
       {
-        "name": "SubmissionRisk",
-        "value": "Avoid submission delays and regulatory exposure"
+        "name": "FastWebsites",
+        "value": "Build fast, responsive websites that load instantly"
       },
       {
-        "name": "TimelineRecovery",
-        "value": "Recover 2-8 weeks on delayed trials"
+        "name": "ModernUI",
+        "value": "Create modern, mobile-friendly UI/UX"
       },
       {
-        "name": "VendorAlignment",
-        "value": "Restore CRO accountability and performance"
-      },
-      {
-        "name": "DelayCost",
-        "value": "Prevent $2M+/month burn from operational drift"
-      },
-      {
-        "name": "DeviationReduction",
-        "value": "Reduce protocol deviations 35%"
-      },
-      {
-        "name": "ReworkPrevention",
-        "value": "Avoid $2.4M+ in CRO rework costs"
+        "name": "HighPerformance",
+        "value": "Optimize websites for speed and performance"
       }
     ],
     "metrics": {
-      "VendorDrift": 0.45,
-      "TimelineDelay": 0.67,
-      "DeviationRate": 0.38,
-      "TMFReadiness": 0.55,
-      "MonitoringVariance": 0.52,
-      "SubmissionExposure": 0.71
+      "SpeedImprovement": 0.6,
+      "UIDeliveryScore": 0.9,
+      "PerfBoost": 0.5,
+      "DeliveredWebsites": 40.0,
+      "ExpertiseLevel": 0.95
     },
     "computed_metrics": {
-      "OperationalHealth": "TimelineDelay * 1.3 + VendorDrift * 1.2",
-      "SubmissionReadiness": "(TMFReadiness + MonitoringVariance) / 2",
-      "CriticalPathRisk": "(SubmissionExposure * 1.5 + TimelineDelay) / 2",
-      "OverallTrialRisk": "(VendorDrift + TimelineDelay + DeviationRate + TMFReadiness + MonitoringVariance + SubmissionExposure) / 6"
+      "OverallImpact": "(SpeedImprovement + PerfBoost + UIDeliveryScore) / 3"
     }
   },
   "automation": {
-    "triggers": [
-      {
-        "condition": "VendorDrift > 0.40",
-        "action": "escalate(\"vendor_accountability\")",
-        "type": "threshold_alert"
-      },
-      {
-        "condition": "TimelineDelay > 0.60",
-        "action": "alert(\"critical_path_intervention\")",
-        "type": "threshold_alert"
-      },
-      {
-        "condition": "DeviationRate > 0.35",
-        "action": "notify(\"protocol_training\")",
-        "type": "threshold_alert"
-      },
-      {
-        "condition": "TMFReadiness < 0.60",
-        "action": "escalate(\"submission_readiness\")",
-        "type": "threshold_alert"
-      },
-      {
-        "condition": "SubmissionExposure > 0.65",
-        "action": "alert(\"regulatory_risk\")",
-        "type": "threshold_alert"
-      },
-      {
-        "condition": "MonitoringVariance > 0.50",
-        "action": "escalate(\"cro_precision_audit\")",
-        "type": "threshold_alert"
-      }
-    ]
+    "triggers": []
   },
   "page_variants": {
-    "hero": "When Your Trial Cannot Fail",
-    "resume": "Global Execution Precision",
-    "cta": "Get ROI in 60 Seconds"
+    "hero": "Professional Web Developer Delivering Fast & Modern Websites Test",
+    "resume": null,
+    "cta": "Get Your Website Upgrade"
   },
   "hero_section": {
-    "headline": "When Your Trial Cannot Fail",
-    "subheadline": "Avoid submission delays and regulatory exposure",
+    "headline": "Professional Web Developer Delivering Fast & Modern Websites Test",
+    "subheadline": "Build fast, responsive websites that load instantly",
     "background_theme": "professional",
-    "cta_primary": "Get ROI in 60 Seconds"
+    "cta_primary": "Get Your Website Upgrade"
   },
   "value_props": [
     {
-      "title": "SubmissionRisk",
-      "description": "Avoid submission delays and regulatory exposure",
-      "icon": "clock",
-      "quantified": false
-    },
-    {
-      "title": "TimelineRecovery",
-      "description": "Recover 2-8 weeks on delayed trials",
-      "icon": "clock",
-      "quantified": false
-    },
-    {
-      "title": "VendorAlignment",
-      "description": "Restore CRO accountability and performance",
+      "title": "FastWebsites",
+      "description": "Build fast, responsive websites that load instantly",
       "icon": "check-circle",
       "quantified": false
     },
     {
-      "title": "DelayCost",
-      "description": "Prevent $2M+/month burn from operational drift",
-      "icon": "dollar-sign",
-      "quantified": true
-    },
-    {
-      "title": "DeviationReduction",
-      "description": "Reduce protocol deviations 35%",
+      "title": "ModernUI",
+      "description": "Create modern, mobile-friendly UI/UX",
       "icon": "check-circle",
-      "quantified": true
+      "quantified": false
     },
     {
-      "title": "ReworkPrevention",
-      "description": "Avoid $2.4M+ in CRO rework costs",
-      "icon": "dollar-sign",
-      "quantified": true
+      "title": "HighPerformance",
+      "description": "Optimize websites for speed and performance",
+      "icon": "check-circle",
+      "quantified": false
     }
   ],
   "case_studies": [
     {
       "case_id": "case_1",
-      "industry": "clinical_research",
-      "challenge": "Avoid submission delays and regulatory exposure",
-      "result": "Achieved SubmissionRisk",
+      "industry": "professional_services",
+      "challenge": "Build fast, responsive websites that load instantly",
+      "result": "Achieved FastWebsites",
       "testimonial_placeholder": true
     },
     {
       "case_id": "case_2",
-      "industry": "clinical_research",
-      "challenge": "Recover 2-8 weeks on delayed trials",
-      "result": "Achieved TimelineRecovery",
+      "industry": "professional_services",
+      "challenge": "Create modern, mobile-friendly UI/UX",
+      "result": "Achieved ModernUI",
       "testimonial_placeholder": true
     },
     {
       "case_id": "case_3",
-      "industry": "clinical_research",
-      "challenge": "Restore CRO accountability and performance",
-      "result": "Achieved VendorAlignment",
+      "industry": "professional_services",
+      "challenge": "Optimize websites for speed and performance",
+      "result": "Achieved HighPerformance",
       "testimonial_placeholder": true
     }
   ],
   "cta": {
-    "primary_text": "Get ROI in 60 Seconds",
+    "primary_text": "Get Your Website Upgrade",
     "secondary_text": "Learn More",
-    "urgency_message": "High TimelineDelay detected - Take action now",
+    "urgency_message": "High UIDeliveryScore detected - Take action now",
     "button_style": "prominent"
   },
   "seo": {
-    "title": "VP/EVP Clinical Operations - Avoid submission delays and regulatory exposure",
-    "meta_description": "Help VP/EVP Clinical Operations achieve Avoid submission delays and regulatory exposure. Proven framework with measurable results.",
+    "title": "Professional Web Developer - Build fast, responsive websites that load instantly",
+    "meta_description": "Help Professional Web Developer achieve Build fast, responsive websites that load instantly. Proven framework with measurable results.",
     "keywords": [
-      "VP/EVP Clinical Operations",
-      "SubmissionRisk",
-      "TimelineRecovery",
-      "VendorAlignment",
-      "DelayCost",
-      "DeviationReduction",
-      "ReworkPrevention"
+      "Professional Web Developer",
+      "FastWebsites",
+      "ModernUI",
+      "HighPerformance"
     ],
     "og_type": "website"
   }
