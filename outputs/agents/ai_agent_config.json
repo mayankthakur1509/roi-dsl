@@ -5,57 +5,78 @@
     "role": "value_discovery",
     "tone": "professional_empathetic",
     "target_persona": {
-      "role": "Developer",
-      "description": "Professional Web Developer Test15"
+      "role": "Sponsor",
+      "description": "VP/EVP Clinical Operations"
     }
   },
   "goals": [
     {
-      "goal_id": "FastWebsites",
-      "description": "Build fast, responsive websites that load instantly",
+      "goal_id": "SubmissionRisk",
+      "description": "Avoid submission delays and regulatory exposure",
+      "type": "pain_avoidance"
+    },
+    {
+      "goal_id": "TimelineRecovery",
+      "description": "Recover 2-8 weeks on delayed trials",
       "type": "value_gain"
     },
     {
-      "goal_id": "ModernUI",
-      "description": "Create modern, mobile-friendly UI/UX",
+      "goal_id": "VendorAlignment",
+      "description": "Restore CRO accountability and performance",
       "type": "value_gain"
     },
     {
-      "goal_id": "HighPerformance",
-      "description": "Optimize websites for speed and performance",
+      "goal_id": "DelayCost",
+      "description": "Prevent $2M+/month burn from operational drift",
+      "type": "pain_avoidance"
+    },
+    {
+      "goal_id": "DeviationReduction",
+      "description": "Reduce protocol deviations 35%",
       "type": "value_gain"
+    },
+    {
+      "goal_id": "ReworkPrevention",
+      "description": "Avoid $2.4M+ in CRO rework costs",
+      "type": "pain_avoidance"
     }
   ],
   "qualification_logic": {
     "questions": [
       {
-        "metric": "SpeedImprovement",
-        "question": "On a scale of 0-100, how would you rate your current SpeedImprovement?",
-        "threshold": 0.6,
+        "metric": "VendorDrift",
+        "question": "On a scale of 0-100, how would you rate your current VendorDrift?",
+        "threshold": 0.45,
+        "weight": 1.5
+      },
+      {
+        "metric": "TimelineDelay",
+        "question": "On a scale of 0-100, how would you rate your current TimelineDelay?",
+        "threshold": 0.67,
         "weight": 1.0
       },
       {
-        "metric": "UIDeliveryScore",
-        "question": "On a scale of 0-100, how would you rate your current UIDeliveryScore?",
-        "threshold": 0.9,
+        "metric": "DeviationRate",
+        "question": "On a scale of 0-100, how would you rate your current DeviationRate?",
+        "threshold": 0.38,
         "weight": 1.0
       },
       {
-        "metric": "PerfBoost",
-        "question": "On a scale of 0-100, how would you rate your current PerfBoost?",
-        "threshold": 0.5,
+        "metric": "TMFReadiness",
+        "question": "On a scale of 0-100, how would you rate your current TMFReadiness?",
+        "threshold": 0.55,
         "weight": 1.0
       },
       {
-        "metric": "DeliveredWebsites",
-        "question": "On a scale of 0-100, how would you rate your current DeliveredWebsites?",
-        "threshold": 40.0,
+        "metric": "MonitoringVariance",
+        "question": "On a scale of 0-100, how would you rate your current MonitoringVariance?",
+        "threshold": 0.52,
         "weight": 1.0
       },
       {
-        "metric": "ExpertiseLevel",
-        "question": "On a scale of 0-100, how would you rate your current ExpertiseLevel?",
-        "threshold": 0.95,
+        "metric": "SubmissionExposure",
+        "question": "On a scale of 0-100, how would you rate your current SubmissionExposure?",
+        "threshold": 0.71,
         "weight": 1.0
       }
     ],
@@ -74,7 +95,7 @@
     {
       "step": 2,
       "type": "pain_discovery",
-      "message": "I noticed you're interested in Build fast, responsive websites that load instantly. What's driving this need?"
+      "message": "I noticed you're interested in Avoid submission delays and regulatory exposure. What's driving this need?"
     },
     {
       "step": 3,
@@ -84,52 +105,99 @@
     {
       "step": 4,
       "type": "metric_question",
-      "metric": "SpeedImprovement",
-      "message": "How would you describe your current SpeedImprovement?"
+      "metric": "VendorDrift",
+      "message": "How would you describe your current VendorDrift?"
     },
     {
       "step": 5,
       "type": "metric_question",
-      "metric": "UIDeliveryScore",
-      "message": "How would you describe your current UIDeliveryScore?"
+      "metric": "TimelineDelay",
+      "message": "How would you describe your current TimelineDelay?"
     },
     {
       "step": 6,
       "type": "metric_question",
-      "metric": "PerfBoost",
-      "message": "How would you describe your current PerfBoost?"
+      "metric": "DeviationRate",
+      "message": "How would you describe your current DeviationRate?"
     },
     {
       "step": 7,
       "type": "metric_question",
-      "metric": "DeliveredWebsites",
-      "message": "How would you describe your current DeliveredWebsites?"
+      "metric": "TMFReadiness",
+      "message": "How would you describe your current TMFReadiness?"
     },
     {
       "step": 8,
       "type": "metric_question",
-      "metric": "ExpertiseLevel",
-      "message": "How would you describe your current ExpertiseLevel?"
+      "metric": "MonitoringVariance",
+      "message": "How would you describe your current MonitoringVariance?"
     },
     {
       "step": 9,
+      "type": "metric_question",
+      "metric": "SubmissionExposure",
+      "message": "How would you describe your current SubmissionExposure?"
+    },
+    {
+      "step": 10,
       "type": "recommendation",
       "message": "Based on your answers, I can see some opportunities. Would you like to schedule a detailed ROI assessment?"
     }
   ],
-  "automation_rules": [],
+  "automation_rules": [
+    {
+      "trigger_id": "trigger_1",
+      "condition": "VendorDrift > 0.40",
+      "action": "escalate(\"vendor_accountability\")",
+      "priority": "medium"
+    },
+    {
+      "trigger_id": "trigger_2",
+      "condition": "TimelineDelay > 0.60",
+      "action": "alert(\"critical_path_intervention\")",
+      "priority": "medium"
+    },
+    {
+      "trigger_id": "trigger_3",
+      "condition": "DeviationRate > 0.35",
+      "action": "notify(\"protocol_training\")",
+      "priority": "medium"
+    },
+    {
+      "trigger_id": "trigger_4",
+      "condition": "TMFReadiness < 0.60",
+      "action": "escalate(\"submission_readiness\")",
+      "priority": "medium"
+    },
+    {
+      "trigger_id": "trigger_5",
+      "condition": "SubmissionExposure > 0.65",
+      "action": "alert(\"regulatory_risk\")",
+      "priority": "medium"
+    },
+    {
+      "trigger_id": "trigger_6",
+      "condition": "MonitoringVariance > 0.50",
+      "action": "escalate(\"cro_precision_audit\")",
+      "priority": "medium"
+    }
+  ],
   "escalation_criteria": {
     "immediate_escalation": [
       {
-        "condition": "UIDeliveryScore > 0.6",
+        "condition": "VendorDrift > 0.40",
+        "reason": "high_risk_detected"
+      },
+      {
+        "condition": "TimelineDelay > 0.60",
+        "reason": "high_risk_detected"
+      },
+      {
+        "condition": "TimelineDelay > 0.6",
         "reason": "metric_threshold_exceeded"
       },
       {
-        "condition": "DeliveredWebsites > 0.6",
-        "reason": "metric_threshold_exceeded"
-      },
-      {
-        "condition": "ExpertiseLevel > 0.6",
+        "condition": "SubmissionExposure > 0.6",
         "reason": "metric_threshold_exceeded"
       }
     ],
@@ -137,10 +205,11 @@
     "nurture_sequence": []
   },
   "metrics_tracking": {
-    "SpeedImprovement": 0.6,
-    "UIDeliveryScore": 0.9,
-    "PerfBoost": 0.5,
-    "DeliveredWebsites": 40.0,
-    "ExpertiseLevel": 0.95
+    "VendorDrift": 0.45,
+    "TimelineDelay": 0.67,
+    "DeviationRate": 0.38,
+    "TMFReadiness": 0.55,
+    "MonitoringVariance": 0.52,
+    "SubmissionExposure": 0.71
   }
 }

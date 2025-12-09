@@ -1,42 +1,92 @@
 {
   "campaign_type": "value_first_sms",
   "persona": {
-    "role": "Developer",
-    "description": "Professional Web Developer Test15"
+    "role": "Sponsor",
+    "description": "VP/EVP Clinical Operations"
   },
   "messages": [
     {
       "sequence": 1,
-      "template": "Hi {name}, Build fast, responsive websites that load instantly. We help with exactly this. Reply LEARN for details.",
-      "goal": "FastWebsites"
+      "template": "Hi {name}, Avoid submission delays and regulatory exposure. We help with exactly this. Reply LEARN for details.",
+      "goal": "SubmissionRisk"
+    },
+    {
+      "sequence": 2,
+      "template": "Your VendorDrift is at 45%. Most companies see issues at 40%+. Reply SCAN for free assessment.",
+      "trigger_metric": "VendorDrift",
+      "trigger_threshold": 0.4
     },
     {
       "sequence": 3,
-      "template": "Ready to take action? Get Your Website Upgrade: [LINK]",
-      "cta": "Get Your Website Upgrade"
+      "template": "Ready to take action? Get ROI in 60 Seconds: [LINK]",
+      "cta": "Get ROI in 60 Seconds"
     }
   ],
-  "triggers": [],
+  "triggers": [
+    {
+      "condition": "VendorDrift > 0.40",
+      "action": "escalate(\"vendor_accountability\")",
+      "type": "metric_threshold"
+    },
+    {
+      "condition": "TimelineDelay > 0.60",
+      "action": "alert(\"critical_path_intervention\")",
+      "type": "metric_threshold"
+    },
+    {
+      "condition": "DeviationRate > 0.35",
+      "action": "notify(\"protocol_training\")",
+      "type": "metric_threshold"
+    },
+    {
+      "condition": "TMFReadiness < 0.60",
+      "action": "escalate(\"submission_readiness\")",
+      "type": "metric_threshold"
+    },
+    {
+      "condition": "SubmissionExposure > 0.65",
+      "action": "alert(\"regulatory_risk\")",
+      "type": "metric_threshold"
+    },
+    {
+      "condition": "MonitoringVariance > 0.50",
+      "action": "escalate(\"cro_precision_audit\")",
+      "type": "metric_threshold"
+    }
+  ],
   "metrics": {
-    "SpeedImprovement": 0.6,
-    "UIDeliveryScore": 0.9,
-    "PerfBoost": 0.5,
-    "DeliveredWebsites": 40.0,
-    "ExpertiseLevel": 0.95
+    "VendorDrift": 0.45,
+    "TimelineDelay": 0.67,
+    "DeviationRate": 0.38,
+    "TMFReadiness": 0.55,
+    "MonitoringVariance": 0.52,
+    "SubmissionExposure": 0.71
   },
   "metadata": {
     "goals": [
       {
-        "name": "FastWebsites",
-        "value": "Build fast, responsive websites that load instantly"
+        "name": "SubmissionRisk",
+        "value": "Avoid submission delays and regulatory exposure"
       },
       {
-        "name": "ModernUI",
-        "value": "Create modern, mobile-friendly UI/UX"
+        "name": "TimelineRecovery",
+        "value": "Recover 2-8 weeks on delayed trials"
       },
       {
-        "name": "HighPerformance",
-        "value": "Optimize websites for speed and performance"
+        "name": "VendorAlignment",
+        "value": "Restore CRO accountability and performance"
+      },
+      {
+        "name": "DelayCost",
+        "value": "Prevent $2M+/month burn from operational drift"
+      },
+      {
+        "name": "DeviationReduction",
+        "value": "Reduce protocol deviations 35%"
+      },
+      {
+        "name": "ReworkPrevention",
+        "value": "Avoid $2.4M+ in CRO rework costs"
       }
     ],
     "output_type": "MintSite"
