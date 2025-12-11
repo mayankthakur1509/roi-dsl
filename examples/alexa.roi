@@ -51,7 +51,7 @@ CASE_STUDY speed_boost: "Improved a client's website speed by 60% through optimi
 # PAGE VARIANTS
 # ==========================================
 
-VARIANT Hero: "Professional Web Developer Delivering Fast & Modern Websites testing auto compiler"
+VARIANT Hero: "Professional Web Developer Delivering Fast & Modern Websites alexa ai and auto deploy on cloudflayer"
 VARIANT Subhead: "High-performance, mobile-friendly, SEO-optimized websites"
 VARIANT CTA: "Get Your Website Upgrade"
 VARIANT SecondaryCTA: "See My Work"
