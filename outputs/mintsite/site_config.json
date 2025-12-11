@@ -1,67 +1,68 @@
 {
   "site_version": "2.1",
   "persona": {
-    "role": "Developer",
-    "description": "Professional Web Developer",
+    "role": "Owner",
+    "description": "Independent Consultant Test",
     "target_vertical": "professional_services"
   },
   "value_framework": {
     "pillars": [
       {
-        "name": "FastWebsites",
-        "value": "Build fast, responsive websites that load instantly"
+        "name": "IncreaseRevenue",
+        "value": "Increase annual consulting revenue Test"
       },
       {
-        "name": "ModernUI",
-        "value": "Create modern, mobile-friendly UI/UX"
-      },
-      {
-        "name": "HighPerformance",
-        "value": "Optimize websites for speed and performance"
+        "name": "SaveTime",
+        "value": "Reduce client onboarding time"
       }
     ],
     "metrics": {
-      "SpeedImprovement": 0.6,
-      "UIDeliveryScore": 0.9,
-      "PerfBoost": 0.5,
-      "DeliveredWebsites": 40.0,
-      "ExpertiseLevel": 0.95
+      "RevenueImpact": 50000.0,
+      "TimeSavedWeeks": 4.0,
+      "CurrentClients": 8.0,
+      "AvgProjectValue": 12000.0
     },
     "computed_metrics": {
-      "OverallImpact": "(SpeedImprovement + PerfBoost + UIDeliveryScore) / 3"
+      "EstimatedAnnualGain": "RevenueImpact * 1",
+      "EfficiencyScore": "(TimeSavedWeeks / 52) * 100"
     }
   },
   "automation": {
-    "triggers": []
+    "triggers": [
+      {
+        "condition": "TimeSavedWeeks > 2",
+        "action": "notify(\"offer_fasttrack\")",
+        "type": "threshold_alert"
+      },
+      {
+        "condition": "RevenueImpact > 10000",
+        "action": "escalate(\"priority_outreach\")",
+        "type": "threshold_alert"
+      }
+    ]
   },
   "page_variants": {
-    "hero": "Professional Web Developer Delivering Fast & Modern Websites alexa ai and auto deploy on cloudflayer",
+    "hero": "Turn Your Expertise Into Predictable Revenue Dummy2 test150922",
     "resume": null,
-    "cta": "Get Your Website Upgrade"
+    "cta": "Get Your vROI Now"
   },
   "hero_section": {
-    "headline": "Professional Web Developer Delivering Fast & Modern Websites alexa ai and auto deploy on cloudflayer",
-    "subheadline": "Build fast, responsive websites that load instantly",
+    "headline": "Turn Your Expertise Into Predictable Revenue Dummy2 test150922",
+    "subheadline": "Increase annual consulting revenue Test",
     "background_theme": "professional",
-    "cta_primary": "Get Your Website Upgrade"
+    "cta_primary": "Get Your vROI Now"
   },
   "value_props": [
     {
-      "title": "FastWebsites",
-      "description": "Build fast, responsive websites that load instantly",
+      "title": "IncreaseRevenue",
+      "description": "Increase annual consulting revenue Test",
       "icon": "check-circle",
       "quantified": false
     },
     {
-      "title": "ModernUI",
-      "description": "Create modern, mobile-friendly UI/UX",
-      "icon": "check-circle",
-      "quantified": false
-    },
-    {
-      "title": "HighPerformance",
-      "description": "Optimize websites for speed and performance",
-      "icon": "check-circle",
+      "title": "SaveTime",
+      "description": "Reduce client onboarding time",
+      "icon": "clock",
       "quantified": false
     }
   ],
@@ -69,39 +70,31 @@
     {
       "case_id": "case_1",
       "industry": "professional_services",
-      "challenge": "Build fast, responsive websites that load instantly",
-      "result": "Achieved FastWebsites",
+      "challenge": "Increase annual consulting revenue Test",
+      "result": "Achieved IncreaseRevenue",
       "testimonial_placeholder": true
     },
     {
       "case_id": "case_2",
       "industry": "professional_services",
-      "challenge": "Create modern, mobile-friendly UI/UX",
-      "result": "Achieved ModernUI",
-      "testimonial_placeholder": true
-    },
-    {
-      "case_id": "case_3",
-      "industry": "professional_services",
-      "challenge": "Optimize websites for speed and performance",
-      "result": "Achieved HighPerformance",
+      "challenge": "Reduce client onboarding time",
+      "result": "Achieved SaveTime",
       "testimonial_placeholder": true
     }
   ],
   "cta": {
-    "primary_text": "Get Your Website Upgrade",
+    "primary_text": "Get Your vROI Now",
     "secondary_text": "Learn More",
-    "urgency_message": "High UIDeliveryScore detected - Take action now",
+    "urgency_message": "High RevenueImpact detected - Take action now",
     "button_style": "prominent"
   },
   "seo": {
-    "title": "Professional Web Developer - Build fast, responsive websites that load instantly",
-    "meta_description": "Help Professional Web Developer achieve Build fast, responsive websites that load instantly. Proven framework with measurable results.",
+    "title": "Independent Consultant Test - Increase annual consulting revenue Test",
+    "meta_description": "Help Independent Consultant Test achieve Increase annual consulting revenue Test. Proven framework with measurable results.",
     "keywords": [
-      "Professional Web Developer",
-      "FastWebsites",
-      "ModernUI",
-      "HighPerformance"
+      "Independent Consultant Test",
+      "IncreaseRevenue",
+      "SaveTime"
     ],
     "og_type": "website"
   }
