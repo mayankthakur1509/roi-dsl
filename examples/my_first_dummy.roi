@@ -24,7 +24,7 @@ WHEN TimeSavedWeeks > 2 THEN notify("offer_fasttrack")
 WHEN RevenueImpact > 10000 THEN escalate("priority_outreach")
 
 # PAGE VARIANTS & MESSAGING
-VARIANT Hero: "Turn Your Expertise Into Predictable Revenue Test"
+VARIANT Hero: "Turn Your Expertise Into Predictable Revenue Test First Dummy"
 VARIANT Subhead: "Simple, measurable results for independent consultants"
 VARIANT CTA: "Get Your vROI Now"
 
