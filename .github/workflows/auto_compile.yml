@@ -1,4 +1,4 @@
-name: Auto-compile ROI files and deploy to Cloudflare Pages
+name: Auto-compile ROI files and commit outputs
 
 on:
   push:
@@ -6,6 +6,7 @@ on:
       - "**/*.roi"
       - "roi_compile.py"
       - "compiler/**"
+      - ".github/workflows/**"
 
 permissions:
   contents: write
@@ -51,38 +52,51 @@ jobs:
             FILES=$(git diff --name-only "$BEFORE" "$AFTER" | grep '\.roi$' || true)
           fi
 
+          # Write multiline output variable
           echo "changed_files<<EOF" >> $GITHUB_OUTPUT
           echo "$FILES" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Show changed ROI files
-        run: echo "${{ steps.changes.outputs.changed_files }}"
+        run: |
+          echo "Changed files:"
+          echo "${{ steps.changes.outputs.changed_files }}"
 
       # -----------------------------
       # COMPILE ALL OUTPUT TYPES
+      # (MintSite + Cloudflare + SDR)
       # -----------------------------
-      - name: Compile ROI files (MintSite + Cloudflare + SDR)
+      - name: Compile changed ROI files
         if: ${{ steps.changes.outputs.changed_files != '' }}
         run: |
-          echo "${{ steps.changes.outputs.changed_files }}" | while read f; do
+          echo "${{ steps.changes.outputs.changed_files }}" | tr '\r' '\n' | while read -r f; do
             if [ -n "$f" ]; then
               echo "----------------------------------"
               echo "🔥 Compiling: $f"
               echo "----------------------------------"
 
-              python roi_compile.py compile "$f" --output mintsite --verbose || true
-              python roi_compile.py compile "$f" --output cloudflare --verbose || true
-              python roi_compile.py compile "$f" --output sdr --verbose || true
+              echo "➡ MintSite"
+              python roi_compile.py compile "$f" --output mintsite --verbose || echo "MintSite failed for $f"
+
+              echo "➡ Cloudflare"
+              python roi_compile.py compile "$f" --output cloudflare --verbose || echo "Cloudflare failed for $f"
+
+              echo "➡ SDR Automation"
+              python roi_compile.py compile "$f" --output sdr --verbose || echo "SDR failed for $f"
             fi
           done
 
-      # -----------------------------
-      # PREVENT INFINITE CI LOOP
-      # (Skip rebuilds triggered by compiled files)
-      # -----------------------------
-      - name: Add .gitignore rule for Cloudflare artifacts
+      # If no changed .roi files, compile all examples (optional fallback)
+      - name: Fallback - compile all examples if none changed
+        if: ${{ steps.changes.outputs.changed_files == '' }}
         run: |
-          echo "outputs/cloudflare/dist" >> .gitignore || true
+          echo "No changed .roi files detected; compiling all examples as fallback"
+          for f in examples/*.roi; do
+            echo "🔥 Compiling: $f"
+            python roi_compile.py compile "$f" --output mintsite --verbose || echo "MintSite failed for $f"
+            python roi_compile.py compile "$f" --output cloudflare --verbose || echo "Cloudflare failed for $f"
+            python roi_compile.py compile "$f" --output sdr --verbose || echo "SDR failed for $f"
+          done
 
       # -----------------------------
       # SHOW OUTPUTS
@@ -93,19 +107,58 @@ jobs:
           ls -R outputs || echo "No outputs directory found"
 
       # -----------------------------
-      # COMMIT & PUSH
+      # DEPLOY TO CLOUDFLARE PAGES (guarded)
+      # -----------------------------
+      - name: Check Cloudflare output exists
+        id: cf_check
+        run: |
+          if [ -d "outputs/cloudflare" ] && [ "$(ls -A outputs/cloudflare | wc -l)" -gt 0 ]; then
+            echo "cloudflare_present=true" >> $GITHUB_OUTPUT
+          else
+            echo "cloudflare_present=false" >> $GITHUB_OUTPUT
+          fi
+
+      # Optional debug step (uncomment for troubleshooting in early runs)
+      - name: Debug Cloudflare token (optional)
+        if: ${{ steps.cf_check.outputs.cloudflare_present == 'true' && env.DEBUG_CF == 'true' }}
+        env:
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          CF_PROJECT_NAME: ${{ secrets.CF_PROJECT_NAME }}
+        run: |
+          echo "Testing Cloudflare Pages project API access..."
+          curl -s -H "Authorization: Bearer $CF_API_TOKEN" \
+               "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/pages/projects/$CF_PROJECT_NAME" \
+               -o /tmp/cf_test.json || true
+          echo "---- Cloudflare API response ----"
+          cat /tmp/cf_test.json || true
+          echo "----------------------------------"
+
+      - name: Deploy to Cloudflare Pages
+        if: ${{ steps.cf_check.outputs.cloudflare_present == 'true' }}
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          accountId: ${{ secrets.CF_ACCOUNT_ID }}
+          projectName: ${{ secrets.CF_PROJECT_NAME }}
+          directory: outputs/cloudflare
+
+      # -----------------------------
+      # COMMIT & PUSH GENERATED OUTPUTS
       # -----------------------------
       - name: Commit and push outputs
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
+          # Add outputs only (avoid adding unintentional files)
           git add outputs || true
 
+          # If there are no staged changes, exit
           if git diff --cached --quiet; then
             echo "No outputs changed."
             exit 0
           fi
 
-          git commit -m "Auto-compiled ROI files (MintSite + Cloudflare + SDR) [ci skip]"
-          git push origin HEAD:${{ github.ref_name }}
+          git commit -m "Auto-compiled ROI files (MintSite + Cloudflare + SDR) [ci skip]" || echo "Nothing to commit"
+          git push origin "HEAD:${{ github.ref_name }}" || echo "Push failed"
