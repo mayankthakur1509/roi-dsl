@@ -3,13 +3,13 @@
   "campaign_type": "value_first_outbound",
   "target_persona": {
     "primary_role": "Owner",
-    "description": "Independent Consultant Test",
+    "description": "Independent Consultant Testing demo",
     "pain_points": [
-      "Increase annual consulting revenue Test",
+      "Increase annual consulting revenue",
       "Reduce client onboarding time"
     ],
     "value_props": [
-      "Increase annual consulting revenue Test",
+      "Increase annual consulting revenue",
       "Reduce client onboarding time"
     ],
     "firmographic_filters": {
@@ -62,7 +62,7 @@
         "day": 0,
         "type": "cold_outreach",
         "subject": "{first_name}, are you seeing RevenueImpact?",
-        "body_template": "Hi {{first_name}},\n\nI noticed {{company}} is in the {{industry}} space. Based on what I've seen with similar companies, many are facing Increase annual consulting revenue Test.\n\nQuick question: Are you currently tracking RevenueImpact?\n\nMost {{title}}s I work with are surprised to learn their RevenueImpact is typically 5000000% higher than they think.\n\nWorth a 15-minute conversation?\n\nBest,\n{{sender_name}}",
+        "body_template": "Hi {{first_name}},\n\nI noticed {{company}} is in the {{industry}} space. Based on what I've seen with similar companies, many are facing Increase annual consulting revenue.\n\nQuick question: Are you currently tracking RevenueImpact?\n\nMost {{title}}s I work with are surprised to learn their RevenueImpact is typically 5000000% higher than they think.\n\nWorth a 15-minute conversation?\n\nBest,\n{{sender_name}}",
         "personalization_tokens": [
           "first_name",
           "company",
@@ -76,8 +76,8 @@
       {
         "day": 2,
         "type": "value_follow_up",
-        "subject": "Turn Your Expertise Into Predictable Revenue Dummy2 test150922 - {company}",
-        "body_template": "{{first_name}},\n\nFollowing up on my previous email about Increase annual consulting revenue Test.\n\nHere's what we typically help {{title}}s achieve:\n\n\u2022 Increase annual consulting revenue Test\n\u2022 Reduce client onboarding time\n\nOne client ({{case_study_company}}) saw $15 in just 6 months.\n\nWant to see how this applies to {{company}}?\n\nCalendar link: {{calendar_link}}\n\nBest,\n{{sender_name}}",
+        "subject": "Turn Your Expertise Into Predictable Revenue Test First Dummy demo - {company}",
+        "body_template": "{{first_name}},\n\nFollowing up on my previous email about Increase annual consulting revenue.\n\nHere's what we typically help {{title}}s achieve:\n\n\u2022 Increase annual consulting revenue\n\u2022 Reduce client onboarding time\n\nOne client ({{case_study_company}}) saw $15 in just 6 months.\n\nWant to see how this applies to {{company}}?\n\nCalendar link: {{calendar_link}}\n\nBest,\n{{sender_name}}",
         "personalization_tokens": [
           "first_name",
           "company",
@@ -169,7 +169,7 @@
       {
         "day": 0,
         "type": "connection_request",
-        "message_template": "Hi {{first_name}},\n\nI help {{title}}s in {{industry}} with Increase annual consulting revenue Test. \n\nWould love to connect and share some insights relevant to {{company}}.\n\nBest,\n{{sender_name}}",
+        "message_template": "Hi {{first_name}},\n\nI help {{title}}s in {{industry}} with Increase annual consulting revenue. \n\nWould love to connect and share some insights relevant to {{company}}.\n\nBest,\n{{sender_name}}",
         "personalization_tokens": [
           "first_name",
           "title",
@@ -183,7 +183,7 @@
         "day": 3,
         "type": "value_message",
         "condition": "connection_accepted",
-        "message_template": "Thanks for connecting, {{first_name}}!\n\nI noticed {{company}} is growing rapidly. \n\nWe've helped similar companies achieve:\n\u2022 Increase annual consulting revenue Test\n\u2022 Reduce client onboarding time\n\nWorth a quick chat to see if there's a fit?\n\nMy calendar: {{calendar_link}}",
+        "message_template": "Thanks for connecting, {{first_name}}!\n\nI noticed {{company}} is growing rapidly. \n\nWe've helped similar companies achieve:\n\u2022 Increase annual consulting revenue\n\u2022 Reduce client onboarding time\n\nWorth a quick chat to see if there's a fit?\n\nMy calendar: {{calendar_link}}",
         "personalization_tokens": [
           "first_name",
           "company",
@@ -219,7 +219,7 @@
       {
         "day": 0,
         "type": "intro_sms",
-        "message_template": "Hi {{first_name}}, Increase annual consulting revenue Test. Are you the right person to discuss this? Reply YES or NO.",
+        "message_template": "Hi {{first_name}}, Increase annual consulting revenue. Are you the right person to discuss this? Reply YES or NO.",
         "character_limit": 160,
         "send_window": "10am-4pm local time",
         "require_opt_in": true
@@ -247,7 +247,7 @@
         "day": 3,
         "type": "discovery_call",
         "call_script": {
-          "opener": "Hi {{first_name}}, this is {{caller_name}} from {{company}}. I sent you an email about Increase annual consulting revenue Test. Do you have 2 minutes?",
+          "opener": "Hi {{first_name}}, this is {{caller_name}} from {{company}}. I sent you an email about Increase annual consulting revenue. Do you have 2 minutes?",
           "pitch": "We help {{title}}s prevent operational issues. Quick question: are you currently tracking RevenueImpact?",
           "qualifying_questions": [
             "How would you rate your current RevenueImpact?",
@@ -261,7 +261,7 @@
           },
           "close": "Based on what you shared, I think there's a fit. Can we schedule 15 minutes next week to dive deeper?"
         },
-        "voicemail_script": "Hi {{first_name}}, {{caller_name}} here. Quick question about Increase annual consulting revenue Test. I'll send details via email. My direct line is {{phone}}.",
+        "voicemail_script": "Hi {{first_name}}, {{caller_name}} here. Quick question about Increase annual consulting revenue. I'll send details via email. My direct line is {{phone}}.",
         "call_window": "10am-4pm local time",
         "max_attempts": 3
       }
@@ -271,7 +271,7 @@
         "trigger": "website_visit",
         "type": "proactive_chat",
         "delay_seconds": 15,
-        "message": "Hi! I noticed you're looking at Increase annual consulting revenue Test. I'm an AI assistant - can I answer any questions?",
+        "message": "Hi! I noticed you're looking at Increase annual consulting revenue. I'm an AI assistant - can I answer any questions?",
         "conversation_flow": [
           {
             "step": 1,
@@ -281,7 +281,7 @@
           {
             "step": 2,
             "type": "qualification",
-            "message": "I help companies with Increase annual consulting revenue Test. Is this relevant to you?"
+            "message": "I help companies with Increase annual consulting revenue. Is this relevant to you?"
           },
           {
             "step": 3,
@@ -313,7 +313,7 @@
           {
             "step": 2,
             "type": "qualification",
-            "message": "I help companies with Increase annual consulting revenue Test. Is this relevant to you?"
+            "message": "I help companies with Increase annual consulting revenue. Is this relevant to you?"
           },
           {
             "step": 3,

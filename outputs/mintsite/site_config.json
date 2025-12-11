@@ -2,14 +2,14 @@
   "site_version": "2.1",
   "persona": {
     "role": "Owner",
-    "description": "Independent Consultant Test",
+    "description": "Independent Consultant Testing demo",
     "target_vertical": "professional_services"
   },
   "value_framework": {
     "pillars": [
       {
         "name": "IncreaseRevenue",
-        "value": "Increase annual consulting revenue Test"
+        "value": "Increase annual consulting revenue"
       },
       {
         "name": "SaveTime",
@@ -42,20 +42,20 @@
     ]
   },
   "page_variants": {
-    "hero": "Turn Your Expertise Into Predictable Revenue Dummy2 test150922",
+    "hero": "Turn Your Expertise Into Predictable Revenue Test First Dummy demo",
     "resume": null,
     "cta": "Get Your vROI Now"
   },
   "hero_section": {
-    "headline": "Turn Your Expertise Into Predictable Revenue Dummy2 test150922",
-    "subheadline": "Increase annual consulting revenue Test",
+    "headline": "Turn Your Expertise Into Predictable Revenue Test First Dummy demo",
+    "subheadline": "Increase annual consulting revenue",
     "background_theme": "professional",
     "cta_primary": "Get Your vROI Now"
   },
   "value_props": [
     {
       "title": "IncreaseRevenue",
-      "description": "Increase annual consulting revenue Test",
+      "description": "Increase annual consulting revenue",
       "icon": "check-circle",
       "quantified": false
     },
@@ -70,7 +70,7 @@
     {
       "case_id": "case_1",
       "industry": "professional_services",
-      "challenge": "Increase annual consulting revenue Test",
+      "challenge": "Increase annual consulting revenue",
       "result": "Achieved IncreaseRevenue",
       "testimonial_placeholder": true
     },
@@ -89,10 +89,10 @@
     "button_style": "prominent"
   },
   "seo": {
-    "title": "Independent Consultant Test - Increase annual consulting revenue Test",
-    "meta_description": "Help Independent Consultant Test achieve Increase annual consulting revenue Test. Proven framework with measurable results.",
+    "title": "Independent Consultant Testing demo - Increase annual consulting revenue",
+    "meta_description": "Help Independent Consultant Testing demo achieve Increase annual consulting revenue. Proven framework with measurable results.",
     "keywords": [
-      "Independent Consultant Test",
+      "Independent Consultant Testing demo",
       "IncreaseRevenue",
       "SaveTime"
     ],
