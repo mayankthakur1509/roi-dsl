@@ -68,8 +68,8 @@ STAT Clients: "20+ Happy Clients"
 # CONTACT INFO
 # ==========================================
 
-CONTACT_NAME: "John Doe"
-CONTACT_EMAIL: "johndoe@mailinator.com"
+CONTACT_NAME: "Alexa"
+CONTACT_EMAIL: "alexa@mailinator.com"
 CONTACT_PHONE: "1234567890"
 CONTACT_LOCATION: "USA"
 
@@ -77,7 +77,7 @@ CONTACT_LOCATION: "USA"
 # SEO DATA
 # ==========================================
 
-SEO_TITLE: "John Doe - Professional Web Developer | Fast, Modern Websites"
+SEO_TITLE: "Alexa Ai | Fast, Modern Websites"
 SEO_DESCRIPTION: "Expert web developer specializing in fast, responsive, SEO-friendly websites. 40+ websites delivered. Proven 60% speed improvements."
 SEO_KEYWORDS: "web developer, website speed, performance optimization, frontend developer, WordPress expert, BigCommerce developer"
 
@@ -86,3 +86,4 @@ SEO_KEYWORDS: "web developer, website speed, performance optimization, frontend 
 # ==========================================
 
 OUTPUT MintSite
+
