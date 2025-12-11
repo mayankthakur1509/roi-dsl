@@ -1,4 +1,4 @@
-name: Auto-compile ROI files and deploy subdomains
+name: Auto-compile ROI files and commit outputs
 
 on:
   push:
@@ -52,6 +52,7 @@ jobs:
             FILES=$(git diff --name-only "$BEFORE" "$AFTER" | grep '\.roi$' || true)
           fi
 
+          # Write multiline output variable
           echo "changed_files<<EOF" >> $GITHUB_OUTPUT
           echo "$FILES" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
@@ -63,27 +64,35 @@ jobs:
 
       # -----------------------------
       # COMPILE ALL OUTPUT TYPES
+      # (MintSite + Cloudflare + SDR)
       # -----------------------------
       - name: Compile changed ROI files
         if: ${{ steps.changes.outputs.changed_files != '' }}
         run: |
           echo "${{ steps.changes.outputs.changed_files }}" | tr '\r' '\n' | while read -r f; do
             if [ -n "$f" ]; then
+              echo "----------------------------------"
               echo "🔥 Compiling: $f"
+              echo "----------------------------------"
 
+              echo "➡ MintSite"
               python roi_compile.py compile "$f" --output mintsite --verbose || echo "MintSite failed for $f"
+
+              echo "➡ Cloudflare"
               python roi_compile.py compile "$f" --output cloudflare --verbose || echo "Cloudflare failed for $f"
+
+              echo "➡ SDR Automation"
               python roi_compile.py compile "$f" --output sdr --verbose || echo "SDR failed for $f"
             fi
           done
 
+      # If no changed .roi files, compile all examples (optional fallback)
       - name: Fallback - compile all examples if none changed
         if: ${{ steps.changes.outputs.changed_files == '' }}
         run: |
-          echo "No changed .roi files — compiling all examples."
+          echo "No changed .roi files detected; compiling all examples as fallback"
           for f in examples/*.roi; do
             echo "🔥 Compiling: $f"
-
             python roi_compile.py compile "$f" --output mintsite --verbose || echo "MintSite failed for $f"
             python roi_compile.py compile "$f" --output cloudflare --verbose || echo "Cloudflare failed for $f"
             python roi_compile.py compile "$f" --output sdr --verbose || echo "SDR failed for $f"
@@ -98,7 +107,7 @@ jobs:
           ls -R outputs || echo "No outputs directory found"
 
       # -----------------------------
-      # CHECK CLOUDFLARE OUTPUT
+      # DEPLOY TO CLOUDFLARE PAGES (guarded)
       # -----------------------------
       - name: Check Cloudflare output exists
         id: cf_check
@@ -109,33 +118,30 @@ jobs:
             echo "cloudflare_present=false" >> $GITHUB_OUTPUT
           fi
 
-      # -----------------------------
-      # INSTALL WRANGLER
-      # -----------------------------
-      - name: Install Wrangler
-        if: ${{ steps.cf_check.outputs.cloudflare_present == 'true' }}
-        run: npm install -g wrangler
-
-      # -----------------------------
-      # DEPLOY SUBDOMAIN FOR EACH ROI FILE
-      # -----------------------------
-      - name: Deploy each client as subdomain
-        if: ${{ steps.cf_check.outputs.cloudflare_present == 'true' }}
+      # Optional debug step (uncomment for troubleshooting in early runs)
+      - name: Debug Cloudflare token (optional)
+        if: ${{ steps.cf_check.outputs.cloudflare_present == 'true' && env.DEBUG_CF == 'true' }}
         env:
           CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          CF_PROJECT_NAME: ${{ secrets.CF_PROJECT_NAME }}
         run: |
-          for dir in outputs/cloudflare/*; do
-            if [ -d "$dir" ]; then
-              CLIENT=$(basename "$dir")
+          echo "Testing Cloudflare Pages project API access..."
+          curl -s -H "Authorization: Bearer $CF_API_TOKEN" \
+               "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/pages/projects/$CF_PROJECT_NAME" \
+               -o /tmp/cf_test.json || true
+          echo "---- Cloudflare API response ----"
+          cat /tmp/cf_test.json || true
+          echo "----------------------------------"
 
-              echo "🚀 Deploying $CLIENT to subdomain:"
-              echo "https://$CLIENT.${{ secrets.CF_PROJECT_NAME }}.pages.dev"
-
-              wrangler pages deploy "$dir" \
-                --project-name="${{ secrets.CF_PROJECT_NAME }}" \
-                --branch="$CLIENT"
-            fi
-          done
+      - name: Deploy to Cloudflare Pages
+        if: ${{ steps.cf_check.outputs.cloudflare_present == 'true' }}
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          accountId: ${{ secrets.CF_ACCOUNT_ID }}
+          projectName: ${{ secrets.CF_PROJECT_NAME }}
+          directory: outputs/cloudflare
 
       # -----------------------------
       # COMMIT & PUSH GENERATED OUTPUTS
@@ -145,8 +151,10 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
+          # Add outputs only (avoid adding unintentional files)
           git add outputs || true
 
+          # If there are no staged changes, exit
           if git diff --cached --quiet; then
             echo "No outputs changed."
             exit 0
