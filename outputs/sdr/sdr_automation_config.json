@@ -78,7 +78,7 @@
       {
         "day": 2,
         "type": "value_follow_up",
-        "subject": "Maria Hero Section test - {company}",
+        "subject": "Hero Section Ashok - {company}",
         "body_template": "{{first_name}},\n\nFollowing up on my previous email about Build fast, responsive websites that load instantly.\n\nHere's what we typically help {{title}}s achieve:\n\n\u2022 Build fast, responsive websites that load instantly\n\u2022 Create modern, mobile-friendly UI/UX\n\u2022 Optimize websites for speed and performance\n\nOne client ({{case_study_company}}) saw 60% in just 90 days.\n\nWant to see how this applies to {{company}}?\n\nCalendar link: {{calendar_link}}\n\nBest,\n{{sender_name}}",
         "personalization_tokens": [
           "first_name",
