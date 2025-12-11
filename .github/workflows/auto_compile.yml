@@ -1,4 +1,4 @@
-name: Auto Compile + Deploy to Cloudflare
+name: Auto-compile ROI files and deploy to Cloudflare Pages
 
 on:
   push:
@@ -6,61 +6,106 @@ on:
       - "**/*.roi"
       - "roi_compile.py"
       - "compiler/**"
-      - ".github/workflows/**"
+
+permissions:
+  contents: write
 
 jobs:
-  build-and-deploy:
+  compile-and-commit:
     runs-on: ubuntu-latest
 
     steps:
+      # -----------------------------
+      # CHECKOUT
+      # -----------------------------
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 0
 
+      # -----------------------------
+      # PYTHON
+      # -----------------------------
       - name: Set up Python 3.11
         uses: actions/setup-python@v4
         with:
           python-version: "3.11"
 
-      - name: Install pip + dependencies
+      - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
 
+      # -----------------------------
+      # DETECT CHANGED ROI FILES
+      # -----------------------------
       - name: Detect changed ROI files
         id: changes
         run: |
           BEFORE="${{ github.event.before }}"
           AFTER="${{ github.sha }}"
+
           if [ "$BEFORE" = "0000000000000000000000000000000000000000" ]; then
             FILES=$(git diff --name-only $AFTER^ $AFTER | grep '\.roi$' || true)
           else
             FILES=$(git diff --name-only "$BEFORE" "$AFTER" | grep '\.roi$' || true)
           fi
-          echo "FILES<<EOF" >> $GITHUB_OUTPUT
+
+          echo "changed_files<<EOF" >> $GITHUB_OUTPUT
           echo "$FILES" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
-      - name: Compile ROI files
-        run: |
-          FILES="${{ steps.changes.outputs.FILES }}"
-          if [ -z "$FILES" ]; then
-            echo "No ROI changed. Compiling everything."
-            FILES=$(ls examples/*.roi)
-          fi
+      - name: Show changed ROI files
+        run: echo "${{ steps.changes.outputs.changed_files }}"
 
-          echo "$FILES" | while read f; do
-            echo "🔥 Compiling $f"
-            python roi_compile.py compile "$f" --output cloudflare --verbose || echo "Compile failed"
+      # -----------------------------
+      # COMPILE ALL OUTPUT TYPES
+      # -----------------------------
+      - name: Compile ROI files (MintSite + Cloudflare + SDR)
+        if: ${{ steps.changes.outputs.changed_files != '' }}
+        run: |
+          echo "${{ steps.changes.outputs.changed_files }}" | while read f; do
+            if [ -n "$f" ]; then
+              echo "----------------------------------"
+              echo "🔥 Compiling: $f"
+              echo "----------------------------------"
+
+              python roi_compile.py compile "$f" --output mintsite --verbose || true
+              python roi_compile.py compile "$f" --output cloudflare --verbose || true
+              python roi_compile.py compile "$f" --output sdr --verbose || true
+            fi
           done
 
-      - name: Show Cloudflare output
+      # -----------------------------
+      # PREVENT INFINITE CI LOOP
+      # (Skip rebuilds triggered by compiled files)
+      # -----------------------------
+      - name: Add .gitignore rule for Cloudflare artifacts
         run: |
-          echo "====== OUTPUTS/CLOUDFLARE ======"
-          ls -R outputs/cloudflare
+          echo "outputs/cloudflare/dist" >> .gitignore || true
 
-      - name: Deploy to Cloudflare Pages
-        uses: cloudflare/pages-action@v1
-        with:
-          apiToken: ${{ secrets.CF_API_TOKEN }}
-          accountId: ${{ secrets.CF_ACCOUNT_ID }}
-          projectName: ${{ secrets.CF_PROJECT_NAME }}
-          directory: outputs/cloudflare
+      # -----------------------------
+      # SHOW OUTPUTS
+      # -----------------------------
+      - name: Show outputs
+        run: |
+          echo "==== OUTPUTS GENERATED ===="
+          ls -R outputs || echo "No outputs directory found"
+
+      # -----------------------------
+      # COMMIT & PUSH
+      # -----------------------------
+      - name: Commit and push outputs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add outputs || true
+
+          if git diff --cached --quiet; then
+            echo "No outputs changed."
+            exit 0
+          fi
+
+          git commit -m "Auto-compiled ROI files (MintSite + Cloudflare + SDR) [ci skip]"
+          git push origin HEAD:${{ github.ref_name }}
