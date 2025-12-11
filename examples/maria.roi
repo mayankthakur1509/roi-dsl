@@ -1,0 +1,88 @@
+# Maria - Web Developer Authority Profile
+# ROI-DSL v2 - Personal Authority Site
+
+# ==========================================
+# PERSONA
+# ==========================================
+
+PERSONA Developer: "Professional Web Developer"
+PERSONA Frontend: "Frontend & UI Specialist"
+
+# ==========================================
+# VALUE PROPOSITIONS (GOALS)
+# ==========================================
+
+GOAL FastWebsites: "Build fast, responsive websites that load instantly"
+METRIC SpeedImprovement: 0.60      # 60% speed improvement
+
+GOAL ModernUI: "Create modern, mobile-friendly UI/UX"
+METRIC UIDeliveryScore: 0.90       # 90% user satisfaction estimate
+
+GOAL HighPerformance: "Optimize websites for speed and performance"
+METRIC PerfBoost: 0.50             # 50% performance gain estimate
+
+# ==========================================
+# CREDENTIALS
+# ==========================================
+
+CREDENTIAL Experience: "40+ Websites Delivered"
+CREDENTIAL Skills: "Expert in JavaScript, jQuery, PHP, WordPress, BigCommerce"
+
+# ==========================================
+# METRICS (Current State)
+# ==========================================
+
+METRIC DeliveredWebsites: 40
+METRIC ExpertiseLevel: 0.95
+
+# ==========================================
+# COMPUTED METRICS (RMetrics)
+# ==========================================
+
+RMetric OverallImpact: "(SpeedImprovement + PerfBoost + UIDeliveryScore) / 3"
+
+# ==========================================
+# CASE STUDIES
+# ==========================================
+
+CASE_STUDY speed_boost: "Improved a client's website speed by 60% through optimization and refactoring"
+
+# ==========================================
+# PAGE VARIANTS
+# ==========================================
+
+VARIANT Hero: "Maria Hero Section"
+VARIANT Subhead: "High-performance, mobile-friendly, SEO-optimized websites"
+VARIANT CTA: "Get Your Website Upgrade"
+VARIANT SecondaryCTA: "See My Work"
+
+# ==========================================
+# SUCCESS STATS
+# ==========================================
+
+STAT SitesDelivered: "40+ Websites Delivered"
+STAT SpeedBoost: "60% Speed Improvement"
+STAT Clients: "20+ Happy Clients"
+
+# ==========================================
+# CONTACT INFO
+# ==========================================
+
+CONTACT_NAME: "Maria"
+CONTACT_EMAIL: "johndoe@mailinator.com"
+CONTACT_PHONE: "1234567890"
+CONTACT_LOCATION: "USA"
+
+# ==========================================
+# SEO DATA
+# ==========================================
+
+SEO_TITLE: "Maria - Professional Web Developer | Fast, Modern Websites"
+SEO_DESCRIPTION: "Expert web developer specializing in fast, responsive, SEO-friendly websites. 40+ websites delivered. Proven 60% speed improvements."
+SEO_KEYWORDS: "web developer, website speed, performance optimization, frontend developer, WordPress expert, BigCommerce developer"
+
+# ==========================================
+# OUTPUT
+# ==========================================
+
+OUTPUT MintSite
