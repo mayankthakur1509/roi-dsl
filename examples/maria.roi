@@ -51,7 +51,7 @@ CASE_STUDY speed_boost: "Improved a client's website speed by 60% through optimi
 # PAGE VARIANTS
 # ==========================================
 
-VARIANT Hero: "Maria Hero Section maria test"
+VARIANT Hero: "Maria Hero Section test"
 VARIANT Subhead: "High-performance, mobile-friendly, SEO-optimized websites"
 VARIANT CTA: "Get Your Website Upgrade"
 VARIANT SecondaryCTA: "See My Work"
