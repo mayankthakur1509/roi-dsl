@@ -35,12 +35,12 @@
     "triggers": []
   },
   "page_variants": {
-    "hero": "Maria Hero Section test",
+    "hero": "Hero Section Ashok",
     "resume": null,
     "cta": "Get Your Website Upgrade"
   },
   "hero_section": {
-    "headline": "Maria Hero Section test",
+    "headline": "Hero Section Ashok",
     "subheadline": "Build fast, responsive websites that load instantly",
     "background_theme": "professional",
     "cta_primary": "Get Your Website Upgrade"
